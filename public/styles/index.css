@@ -4,8 +4,52 @@
 
 
 
+/* #region Global */
+.sheet 
+{
 
+}
+/* #endregion */
 
+/* #region NavBar */
+nav 
+{
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between;
 
+    margin: 0.75rem 4rem; 
+}
 
+nav > div.navigation, div.navigation > div.directions
+{
+    display: flex; 
+    align-items: center; 
+    justify-content: flex-start;
+}
+
+div.directions > div.icon 
+{
+    margin: 0px 0.25rem; 
+}
+
+#logo 
+{
+    margin-right: 4vw;
+    fill: var(--foreground);
+}
+
+nav > div.links
+{
+    display: flex; 
+    align-items: center; 
+    justify-content: flex-end;
+}
+
+nav .links > .icon 
+{
+    margin-left: 1rem;
+    fill: var(--foreground)
+}
+/* #endregion */
 

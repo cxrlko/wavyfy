@@ -227,6 +227,11 @@ div.scrollview.vertical > div.viewport > div.content
     width: 100%;
     height: 100%;
 }
+
+.textfield > div.input > input::placeholder
+{
+    color: var(--gray);
+}
 /* #endregion */
 
 
