@@ -2,7 +2,7 @@
 
 
 
-
+/* #region Track Card */
 div.track-card
 {
     display: flex; 
@@ -42,13 +42,68 @@ div.track-card > div.info > a
 div.track-card > div.info > a > p
 {
     max-width: min-content; 
-    color: var(--foreground);
+    color: var(--tint);
 }
 
 div.track-card > div.metadata 
 {
     max-width: min-content;
 }
+/* #endregion */
+
+
+
+/* #region Album Card */
+a.album-card
+{
+    display: flex;
+    align-items: center; 
+    justify-content: space-between;
+
+    height: 5rem;
+    color: var(--foreground); 
+}
+
+a.album-card > div 
+{
+    flex: 1 1 100%; 
+}
+
+a.album-card > div.cover 
+{
+    min-width: 5rem; 
+    min-height: 5rem;
+    max-width: 5rem; 
+    max-height: 5rem;
+}
+
+a.album-card > div.content 
+{
+    display: flex; 
+    flex-direction: column; 
+    align-items: flex-start; 
+    justify-content: flex-start;
+
+    margin: 0px 1rem; 
+
+    height: 100%;
+    max-width:  100%;
+}
+
+a.album-card > div.content > p.artists 
+{
+    margin: 0.25rem 0px; 
+    color: var(--tint); 
+}
+
+a.album-card > div.content > p.name 
+{
+    max-height: 3rem;
+}
+
+/* #endregion */
+
+
 
 
 

@@ -186,7 +186,13 @@ nav .links > .icon
 
 /* #endregion */
 
-
+/* #region Artist Albums */
+#artist-albums > .content 
+{
+    max-height: 11.5rem;
+    overflow-y: hidden;
+}
+/* #endregion */
 
 
 

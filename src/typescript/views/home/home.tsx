@@ -1,17 +1,39 @@
+
+
+
+
+
+
+
+
+
 import * as React from "react"
+import { Album } from "../../models/album";
 
 
-
-
-function Home() : JSX.Element
+interface IHomePageProperties 
 {
+
+}
+
+
+function HomePage(props: IHomePageProperties)
+{
+
+    const [newReleases, setNewReleases] = React.useState<Album[]>([]); 
+
     return (
-        <div>Hello Wsosasd</div>
+
+        <h1>Hello world</h1>
+
     )
 }
 
 
-export { Home }
+
+
+
+export { HomePage }
 
 
 

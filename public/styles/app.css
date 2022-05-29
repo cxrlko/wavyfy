@@ -19,7 +19,7 @@
 
     --foreground: #FAFAFC; 
     --accent: #F2F2F5; 
-    --tint: #DCDDE5; 
+    --tint: #c0c2d1; 
     --gray: #8F90A6; 
     --shade: #4D4F65; 
     --highlight: #313352; 
@@ -150,8 +150,7 @@ p, input, button, a, label, h1, h2, h3, h4, h5, h6
 {
     overflow: hidden;
     text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
+    white-space: no-wrap;
 }
 
 
@@ -384,7 +383,25 @@ div.divider
 }
 /* #endregion */
 
+/* #region Grid */
+div.grid 
+{
+    display: grid;
+}
 
+div.grid > .grid-item 
+{
+
+    position: relative;
+    display: flex;
+    flex: 1 1 240px;
+
+    overflow: hidden;
+
+    min-width: 0;
+    max-width: 100%;
+}
+/* #endregion */
 
 
 

@@ -7,10 +7,13 @@
 
 import * as React from "react"
 import { Architect } from "../../admin/architect";
+import { Grid } from "../../components/grid";
+import { Region } from "../../components/region";
 import { Axis, Scrollview } from "../../components/scrollview";
 import { Album } from "../../models/album";
 import { Artist } from "../../models/artist";
 import { Track } from "../../models/track";
+import { AlbumCard } from "../cards/albumCard";
 import { TrackCard } from "../cards/trackCard";
 
 
@@ -29,7 +32,7 @@ function ArtistPage(props: IArtistPageProperties)
 
     React.useEffect(() => 
     {
-        const artistID = `1vyhD5VmyZ7KMfW5gqLgo5`;
+        const artistID = `6OBGbSaBUvQtk9wpQfDbOE`;
         
         setupArtistPage(artistID); 
 
@@ -94,17 +97,19 @@ function ArtistAlbums(props: IArtistAlbums)
 
     const [minView, setMinView] = React.useState(true); 
 
-    const albums = React.useMemo<Album[]>(() => 
-    {
-        const items = (minView) ? props.albums.slice(0, 5) : props.albums;
-        return items;  
-
-    }, [minView, props.albums])
 
     return (
 
-        <h1>Artist Albums</h1>
+        <Region articleID="artist-albums" header={ "Albums" } content=
+        {
 
+            <Grid gap={{ x: 1, y: 1 }} minItemWidth={ 320 } contentItems=
+            {
+                <>
+                { (props.albums.map((album, albumIndex) => <AlbumCard key={ albumIndex } album={ album } class="grid-item" />)) }
+                </>
+            } />
+        }/>
 
     )
 
@@ -135,11 +140,14 @@ function ArtistTopTracks(props: IArtistTopTracks)
 
     return (
 
-    <div id="top-tracks">
+    <Region articleID="top-tracks" header="Top Songs" content=
     {
+        <>
+        {
         (displaySongs.map((song, songIndex) => <TrackCard key={ songIndex } track={ song } />))
-    }
-    </div>
+        }
+        </>
+    } />
 
     )
 
