@@ -54,6 +54,35 @@ class Network
     }
     // #endregion
 
+    // ^ Home 
+    // #region Fetch New Releases 
+    async fetchNewReleases() : Promise<Album[]>
+    {
+        let releases: Album[] = undefined; 
+        const authToken = await this.fetchAuthToken(); 
+
+        const fetchOptions = 
+        {
+            headers: 
+            {
+                Authorization: `Bearer ${ authToken }`, 
+            }
+        }
+
+        await fetch(`https://api.spotify.com/v1/browse/new-releases`, fetchOptions as any)
+        .then((responce) => { return responce.json( )})
+        .then((json) => 
+        {
+            // album = new Album(json);  
+            releases = (json.albums.items as any[]).map((albumData) => { return new Album(albumData) });
+        }) 
+
+        if (releases == undefined) { console.error(`Couldn't fetch New releases`); return; }
+
+        return releases; 
+    }
+    // #endregion
+
 
     // ^ Album
     // #region Fetch Album
