@@ -3,6 +3,7 @@
 
 
 import { Duration } from "../core/duration";
+import { Album } from "./album";
 import { Artist } from "./artist";
 
 
@@ -17,11 +18,12 @@ class Track
     duration: Duration; 
     trackIndex: number; 
     
+    album: Album; 
     artists: Artist[] = []; 
+
 
     constructor(data: any)
     { 
-
         this.id = data.id; 
 
         this.title = data.name;
@@ -30,6 +32,7 @@ class Track
         this.duration = new Duration(data.duration_ms);
         this.trackIndex = data.track_number; 
 
+        this.album = new Album(data.album); 
         this.artists = (data.artists as any[]).map((artistData) => new Artist(artistData)); 
     }
 

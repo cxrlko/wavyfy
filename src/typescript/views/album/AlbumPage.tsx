@@ -49,7 +49,7 @@ function AlbumPage(props: IAlbumPageProperties)
 
     return (
 
-    <Scrollview id="albumpage" classes="sheet" axes={ Axis.vertical } content=
+    <Scrollview id="albumpage" classes="sheet" axis={ Axis.vertical } content=
     {
     <>
         <div id="showcase">
@@ -137,7 +137,7 @@ function AlbumPageMetadata(props: IAlbumPageMetadata)
         <div className="metadata">
             <p>{ props.album.popularity } Million plays</p>
             <Divider />
-            <p>{ props.album.tracks.length } songs</p>
+            <p>{ props.album.trackCount } songs</p>
         </div>
     )
 

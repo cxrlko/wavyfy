@@ -17,10 +17,10 @@ class Album
     label: string; 
     releaseDate: Date; 
 
+    trackCount : number; 
     popularity: number; 
 
     artists: Artist[] = [];
-    tracks: Track[] = []; 
 
     constructor(data: any)
     {
@@ -32,10 +32,10 @@ class Album
         this.label = data.label; 
         this.releaseDate = new Date(data.release_date); 
 
+        this.trackCount = data.total_tracks; 
         this.popularity = data.popularity; 
 
         this.artists = (data.artists as any[]).map((artistData) => new Artist(artistData)); 
-        this.tracks = (data.tracks.items as any[]).map((trackData) => new Track(trackData))
     }
 
 }

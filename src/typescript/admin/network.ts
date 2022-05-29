@@ -157,7 +157,7 @@ class Network
                 }
             }
 
-            return fetch(`https://api.spotify.com/v1/artists/${ artistID }/top-tracks`, fetchOptions as any)
+            return fetch(`https://api.spotify.com/v1/artists/${ artistID }/top-tracks?market=US`, fetchOptions as any)
         })
         .then((responce) => { return responce.json() })
         .then((json) => 
