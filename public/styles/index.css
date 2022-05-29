@@ -5,9 +5,15 @@
 
 
 /* #region Global */
-.sheet 
+.sheet > .viewport
 {
+    height: 100%; 
+    width: 100%;
+}
 
+#root div.scrollview.sheet > div.viewport > div.content 
+{
+    padding: 0px 4vw; 
 }
 /* #endregion */
 
@@ -52,4 +58,38 @@ nav .links > .icon
     fill: var(--foreground)
 }
 /* #endregion */
+
+
+/* #region Album Page Showcase */
+#albumpage #showcase 
+{
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between;
+
+    width: 100%; 
+    ;
+}
+
+#albumpage #showcase > div 
+{
+    flex: 1 1 100%;
+    max-width: 100%;
+
+    height: 100%;
+}
+
+#albumpage #showcase > div.cover 
+{
+    padding: 2rem; 
+}
+/* #endregion */
+
+
+
+
+
+
+
+
 
