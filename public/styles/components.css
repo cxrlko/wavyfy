@@ -121,7 +121,7 @@ div.scrollview > div.viewport
     height: 100%; 
     width: 100%;
 
-    overflow: hidden;
+    /* overflow: hidden; */
 
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;
@@ -245,7 +245,7 @@ div.scrollview.vertical > div.viewport > div.content
 }
   
 
-.label 
+.toggle > .label 
 {
     margin-left: 16px;
     font-weight: var(--regular);

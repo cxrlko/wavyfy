@@ -29,7 +29,7 @@ class App extends React.Component
             <NavBar />
 
             <Routes>
-                <Route exact index element={ <AlbumPage /> } />
+                <Route exact index element={ <ArtistPage /> } />
                 <Route path="/album/:id" element={ <AlbumPage /> } />
                 <Route path="/artist/:id" element={ <ArtistPage /> } />
                 <Route path="/search/:id" element={ <SearchPage /> } />

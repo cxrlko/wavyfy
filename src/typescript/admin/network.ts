@@ -4,6 +4,8 @@
 import { Buffer } from "buffer";
 import { METHODS } from "http";
 import { Album } from "../models/album";
+import { Artist } from "../models/artist";
+import { Track } from "../models/track";
 
 const clientID = `7c79ca1d91b24f3fa7057f1bfc10bcec`; 
 const secretID = `ddc089f46cde4fc6ab46219fd0481373`;
@@ -52,6 +54,8 @@ class Network
     }
     // #endregion
 
+
+    // ^ Album
     // #region Fetch Album
     async fetchAlbum(id: string)
     {
@@ -78,6 +82,121 @@ class Network
         return album; 
     }
     // #endregion
+
+    // #region Fetch Album Tracks
+    async fetchAlbumTracks(albumID: string) : Promise<Track[]>
+    {
+        let items: Track[] = []; 
+
+        await this.fetchAuthToken()
+        .then((token: string) => 
+        {
+            const fetchOptions = 
+            {
+                headers: 
+                {
+                    Authorization: `Bearer ${ token }`, 
+                }
+            }
+
+            return fetch(`https://api.spotify.com/v1/albums/${ albumID }/tracks`, fetchOptions as any)
+        })
+        .then((responce) => { return responce.json() })
+        .then((json) => 
+        {
+            items = (json.items as any[]).map((trackData) => new Track(trackData)); 
+        })
+
+        return items; 
+    }
+    // #endregion
+
+
+
+    // ^ Artist 
+    // #region Fetch Artist 
+    async fetchArtist(artistID) : Promise<Artist>
+    {
+        let artist: Artist = undefined; 
+        const authToken = await this.fetchAuthToken(); 
+
+        const fetchOptions = 
+        {
+            headers: 
+            {
+                Authorization: `Bearer ${ authToken }`, 
+            }
+        }
+
+        await fetch(`https://api.spotify.com/v1/artists/${ artistID }`, fetchOptions as any)
+        .then((responce) => { return responce.json( )})
+        .then((json) => 
+        {
+            artist = new Artist(json);  
+        }) 
+
+        if (artist == undefined) { console.error(`Couldn't fetch artist with id: ${ artistID }`); return; }
+
+        return artist; 
+    }
+    // #endregion
+
+    // #region Fetch Artist Top Track 
+    async fetchArtistTopTracks(artistID: string) : Promise<Track[]>
+    {
+        let items: Track[] = []; 
+
+        await this.fetchAuthToken()
+        .then((token: string) => 
+        {
+            const fetchOptions = 
+            {
+                headers: 
+                {
+                    Authorization: `Bearer ${ token }`, 
+                }
+            }
+
+            return fetch(`https://api.spotify.com/v1/artists/${ artistID }/top-tracks`, fetchOptions as any)
+        })
+        .then((responce) => { return responce.json() })
+        .then((json) => 
+        {
+            items = (json.tracks as any[]).map((trackData) => new Track(trackData)); 
+        })
+
+        return items; 
+    }
+    // #endregion
+
+    // #region Fetch Artist Top Albums 
+    async fetchArtistAlbums(artistID: string) : Promise<Album[]>
+    {
+        let items: Album[] = []; 
+
+        await this.fetchAuthToken()
+        .then((token: string) => 
+        {
+            const fetchOptions = 
+            {
+                headers: 
+                {
+                    Authorization: `Bearer ${ token }`, 
+                }
+            }
+
+            return fetch(`https://api.spotify.com/v1/artists/${ artistID }/albums`, fetchOptions as any)
+        })
+        .then((responce) => { return responce.json() })
+        .then((json) => 
+        {
+            items = (json.items as any[]).map((albumData) => new Album(albumData)); 
+        })
+
+        return items; 
+    }
+    // #endregion
+
 
 
 }

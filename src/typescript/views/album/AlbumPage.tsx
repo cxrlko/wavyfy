@@ -3,9 +3,12 @@
 
 
 import * as React from "react"
+import { Link, NavLink } from "react-router-dom";
 import { Architect } from "../../admin/architect";
+import { Divider } from "../../components/divider";
 import { Axis, Scrollview } from "../../components/scrollview"
 import { Album } from "../../models/album";
+import { Track } from "../../models/track";
 
 
 interface IAlbumPageProperties
@@ -17,24 +20,31 @@ interface IAlbumPageProperties
 function AlbumPage(props: IAlbumPageProperties)
 {
     const [album, setAlbum] = React.useState<Album>( undefined );
+    const [songs, setSongs] = React.useState<Track[]>([]);
     
 
     React.useEffect(() => 
     {
-        const id = `02uWB8Kekadkl3yGBoOOcx`;
+        const id = `13MHW8hoLFjX7SaVEVmj3X`;
 
-        fetchPageAlbum(id); 
+        setupPage(id); 
 
     }, []); 
 
-    const fetchPageAlbum = React.useCallback( async (id: string) => 
+    // #region Setup page
+    /**
+     * 
+     */
+    const setupPage = React.useCallback( async (id: string) => 
     {
         const item = await Architect.network.fetchAlbum(id);
         setAlbum(item); 
 
-        console.log(item); 
-
+        const songs = await Architect.network.fetchAlbumTracks(id); 
+        setSongs(songs); 
+ 
     }, []); 
+    // #endregion
 
 
     return (
@@ -53,6 +63,18 @@ function AlbumPage(props: IAlbumPageProperties)
         }
         </div>
 
+
+        <div id="albumTracks">
+            <div className="toolkit">
+
+            </div>
+
+            <>
+            {
+                (songs.map((song) => <AlbumTrack key={ song.trackIndex } item={ song } />))
+            }
+            </>
+        </div>
     </>
     }/>
 
@@ -72,8 +94,11 @@ function AlbumPageHeader(props: IAlbumPageHeaderProperties)
     return (
 
         <div className="header">
-            <h1>{ props.album.title }</h1>
-            <p className="mtdata">Album&nbsp;&middot;&nbsp;{ `${ props.album.releaseDate.getFullYear() }` }</p>
+            <h1 className="truncated">{ props.album.title }</h1>
+            <div className="mtdata">
+                <Link to={ `/artist/${ props.album.artists[0].id }` } children={ <p className="label">{ props.album.artists[0].name }</p> } />
+                <p>&nbsp;&middot;&nbsp;Album&nbsp;&middot;&nbsp;{ props.album.releaseDate.getFullYear() }</p>
+            </div>
         </div>
 
     )
@@ -110,7 +135,9 @@ function AlbumPageMetadata(props: IAlbumPageMetadata)
     return (
 
         <div className="metadata">
-        { props.album.id }
+            <p>{ props.album.popularity } Million plays</p>
+            <Divider />
+            <p>{ props.album.tracks.length } songs</p>
         </div>
     )
 
@@ -118,6 +145,28 @@ function AlbumPageMetadata(props: IAlbumPageMetadata)
 
 // #endregion
 
+// #region Album Track 
+interface IAlbumTrackProperties 
+{
+    item: Track; 
+}
+
+function AlbumTrack(props: IAlbumTrackProperties)
+{
+
+    return (
+
+        <div className="album-track">
+            <p className="index">{ props.item.trackIndex }</p>
+            <p>{ props.item.title }</p>
+            <p className="time">{ props.item.duration.digitalTimeFormat() }</p>
+
+        </div>
+
+    )
+
+}
+// #endregion
 
 export { AlbumPage }
 

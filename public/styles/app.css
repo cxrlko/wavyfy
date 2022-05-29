@@ -36,10 +36,10 @@
 
     /* #region Text Styles */
     --display: 
-    "Sail",
-    "Oleo Script Swash Caps",
-    "Old Standard TT",
-    cursive;
+    "Inter",
+    "Be Vietnam Pro", 
+    "Rubik",
+    sans-serif;
 
 
     --body:
@@ -68,6 +68,10 @@
     stroke: inherit; 
     stroke-width: inherit;
     fill: inherit;
+
+    /* white-space: inherit; */
+    /* overflow: inherit; */
+    /* text-overflow: inherit; */
 
     font-size: inherit;
 }
@@ -142,6 +146,14 @@ p, input, button, a, label, h1, h2, h3, h4, h5, h6
     line-height: 150%;
 }
 
+.truncated
+{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+
 
 p.display, h1
 {
@@ -204,6 +216,7 @@ p.truncated
     text-overflow: ellipsis;
 }
 
+
 /* #endregion */
 
 /* #region Image */
@@ -228,7 +241,7 @@ div > img
 a 
 {
     color: var(--brand); 
-    font-size: 0.9rem;
+    /* font-size: 0.9rem; */
     text-decoration: none;
 }
 /* #endregion */
@@ -358,6 +371,22 @@ article > p
     margin: 1rem 0px; ;
 }
 /* #endregion */
+
+
+
+/* #region Divider */
+div.divider
+{
+    width: 100%; 
+    height: 1px;
+
+    background-color: var(--gray);
+}
+/* #endregion */
+
+
+
+
 
 
 
