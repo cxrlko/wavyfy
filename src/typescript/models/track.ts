@@ -18,12 +18,13 @@ class Track
     duration: Duration; 
     trackIndex: number; 
     
-    album: Album; 
+    coverURL: string | undefined; 
     artists: Artist[] = []; 
 
 
     constructor(data: any)
     { 
+        // console.log(data); 
         this.id = data.id; 
 
         this.title = data.name;
@@ -31,8 +32,8 @@ class Track
 
         this.duration = new Duration(data.duration_ms);
         this.trackIndex = data.track_number; 
-
-        this.album = new Album(data.album); 
+        
+        this.coverURL = (data.album) ? (data.album.images as any[])[0].url : undefined;
         this.artists = (data.artists as any[]).map((artistData) => new Artist(artistData)); 
     }
 

@@ -13,6 +13,7 @@ import { Axis, Scrollview } from "../../components/scrollview";
 import { Album } from "../../models/album";
 import { Artist } from "../../models/artist";
 import { Track } from "../../models/track";
+import { getIDfromURL } from "../../utilities/getId";
 import { AlbumCard } from "../cards/albumCard";
 import { TrackCard } from "../cards/trackCard";
 
@@ -32,7 +33,8 @@ function ArtistPage(props: IArtistPageProperties)
 
     React.useEffect(() => 
     {
-        const artistID = `6OBGbSaBUvQtk9wpQfDbOE`;
+
+        const artistID = getIDfromURL(window.location.pathname); 
         
         setupArtistPage(artistID); 
 
@@ -132,6 +134,7 @@ function ArtistTopTracks(props: IArtistTopTracks)
 
     const displaySongs = React.useMemo<Track[]>(() => 
     {
+
         const items = (minView) ? props.songs.slice(0, 5) : props.songs; 
         return items; 
 
@@ -143,8 +146,8 @@ function ArtistTopTracks(props: IArtistTopTracks)
     <Region articleID="top-tracks" header="Top Songs" content=
     {
         <>
-        {
-        (displaySongs.map((song, songIndex) => <TrackCard key={ songIndex } track={ song } />))
+        { 
+            (displaySongs.map((song, songIndex) => <TrackCard key={ songIndex } track={ song } />))
         }
         </>
     } />

@@ -9,6 +9,7 @@ import { Divider } from "../../components/divider";
 import { Axis, Scrollview } from "../../components/scrollview"
 import { Album } from "../../models/album";
 import { Track } from "../../models/track";
+import { getIDfromURL } from "../../utilities/getId";
 
 
 interface IAlbumPageProperties
@@ -25,8 +26,7 @@ function AlbumPage(props: IAlbumPageProperties)
 
     React.useEffect(() => 
     {
-        const id = `13MHW8hoLFjX7SaVEVmj3X`;
-
+        const id = getIDfromURL(window.location.pathname); 
         setupPage(id); 
 
     }, []); 

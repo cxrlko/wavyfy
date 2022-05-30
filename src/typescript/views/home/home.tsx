@@ -74,8 +74,6 @@ function HomePage(props: IHomePageProperties)
     // #endregion
 
 
-
-
 }
 
 

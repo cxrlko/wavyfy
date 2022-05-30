@@ -22,13 +22,18 @@ interface ITrackCardProperties
 function TrackCard(props: ITrackCardProperties)
 {
 
+    React.useEffect(() => 
+    {
+
+    }, []); 
+
 
     return (
 
     <div className="track-card">
 
         <div className="cover">
-            <img src={ props.track.album.coverURL } alt={ props.track.title } />
+            <img src={ props.track.coverURL } alt={ props.track.title } />
         </div>
 
         <div className="info">

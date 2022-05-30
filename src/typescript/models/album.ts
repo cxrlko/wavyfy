@@ -23,7 +23,7 @@ class Album
     artists: Artist[] = [];
 
     constructor(data: any)
-    {
+    {   
         this.id = data.id; 
 
         this.title = data.name; 

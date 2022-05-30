@@ -345,7 +345,7 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
 /* #endregion */
 
 /* #region Icons */
-div.icon 
+.icon 
 {
     width: 1.5rem; 
     height: 1.5rem;
@@ -355,7 +355,7 @@ div.icon
     justify-content: center;
 }
 
-div.icon > svg 
+.icon > svg 
 {
     width: 100%; 
     height: 100%;
@@ -373,35 +373,7 @@ article > p
 
 
 
-/* #region Divider */
-div.divider
-{
-    width: 100%; 
-    height: 1px;
 
-    background-color: var(--gray);
-}
-/* #endregion */
-
-/* #region Grid */
-div.grid 
-{
-    display: grid;
-}
-
-div.grid > .grid-item 
-{
-
-    position: relative;
-    display: flex;
-    flex: 1 1 240px;
-
-    overflow: hidden;
-
-    min-width: 0;
-    max-width: 100%;
-}
-/* #endregion */
 
 
 

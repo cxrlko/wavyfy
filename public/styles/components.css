@@ -292,3 +292,36 @@ div.scrollview.vertical > div.viewport > div.content
 /* #endregion */
 
 
+/* #region Divider */
+div.divider
+{
+    width: 100%; 
+    height: 1px;
+
+    background-color: var(--gray);
+}
+/* #endregion */
+
+/* #region Grid */
+div.grid 
+{
+    display: grid;
+}
+
+div.grid > .grid-item 
+{
+
+    position: relative;
+    display: flex;
+    flex: 1 1 240px;
+
+    overflow: hidden;
+
+    min-width: 0;
+    max-width: 100%;
+}
+/* #endregion */
+
+
+
+

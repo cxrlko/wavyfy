@@ -84,6 +84,29 @@ class Network
     // #endregion
 
 
+    // #region Fetch Query Items
+    async fetchQueryItems(query: string)
+    {
+        const authToken = await this.fetchAuthToken(); 
+
+        const fetchOptions = 
+        {
+            headers: 
+            {
+                Authorization: `Bearer ${ authToken }`, 
+            }
+        }
+
+        await fetch(`https://api.spotify.com/v1/search?q=${ query }`, fetchOptions as any)
+        .then((responce) => { return responce.json( )})
+        .then((json) => 
+        {
+            console.log(json); 
+        }) 
+    }
+    // #endregion
+
+
     // ^ Album
     // #region Fetch Album
     async fetchAlbum(id: string)
@@ -139,7 +162,6 @@ class Network
         return items; 
     }
     // #endregion
-
 
 
     // ^ Artist 
