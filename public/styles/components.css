@@ -323,5 +323,20 @@ div.grid > .grid-item
 /* #endregion */
 
 
+/* #region Articles */
+article 
+{
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+}
+
+article > p
+{
+    font-size: 1.5rem;
+    margin: 1rem 0px; ;
+}
+/* #endregion */
+
+
 
 

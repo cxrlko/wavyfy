@@ -363,14 +363,6 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
 /* #endregion */
 
 
-/* #region Articles */
-article > p
-{
-    font-size: 1.25rem;
-    margin: 1rem 0px; ;
-}
-/* #endregion */
-
 
 
 

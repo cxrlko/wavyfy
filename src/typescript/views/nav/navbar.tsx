@@ -48,6 +48,7 @@ function NavBar()
                 onTextfieldCommit={ (value: string) => 
                 {
                     navigate(`/search/${ value }`);
+
                 }}
             />
 

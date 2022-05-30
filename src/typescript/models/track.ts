@@ -4,7 +4,7 @@
 
 import { Duration } from "../core/duration";
 import { Album } from "./album";
-import { Artist } from "./artist";
+import { MVArtist } from "./artist";
 
 
 
@@ -19,7 +19,7 @@ class Track
     trackIndex: number; 
     
     coverURL: string | undefined; 
-    artists: Artist[] = []; 
+    artists: MVArtist[] = []; 
 
 
     constructor(data: any)
@@ -34,7 +34,7 @@ class Track
         this.trackIndex = data.track_number; 
         
         this.coverURL = (data.album) ? (data.album.images as any[])[0].url : undefined;
-        this.artists = (data.artists as any[]).map((artistData) => new Artist(artistData)); 
+        this.artists = (data.artists as any[]).map((artistData) => new MVArtist(artistData)); 
     }
 
 }

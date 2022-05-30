@@ -92,6 +92,7 @@ nav .links > .icon
 
 #albumpage #showcase > div.header
 {
+    height: unset;
     width: 100%;
     align-items: flex-start;
 }
@@ -113,27 +114,27 @@ nav .links > .icon
     margin: 1rem 0px; 
 }
 
-#showcase > div.header > div.mtdata a
+#albumpage #showcase > div.header > div.mtdata a
 {
     color: var(--foreground); 
 }
 
-#showcase > div.header > div.mtdata > p
+#albumpage #showcase > div.header > div.mtdata > p
 {
     color: var(--gray); 
 }
 
-#showcase > div.metadata
+#albumpage #showcase > div.metadata
 {
     align-items: flex-end;
 }
 
-#showcase > div.metadata > p
+#albumpage #showcase > div.metadata > p
 {
     margin: 1rem 0px; 
 }
 
-#showcase > div.metadata > div.divider
+#albumpage #showcase > div.metadata > div.divider
 {
     width: 2rem;
 }
@@ -186,13 +187,71 @@ nav .links > .icon
 
 /* #endregion */
 
+
+/*  ^ Artist */
 /* #region Artist Albums */
 #artist-albums > .content 
 {
     max-height: 11.5rem;
     overflow-y: hidden;
+
+    margin-bottom: 16vh;
+}
+
+/* #endregion */
+
+/* #region Artist Showcase */
+#artist-showcase
+{
+    position: relative; 
+
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+
+    min-height: 360px;
+    height: 50vh;
+    margin: 8vh 0px; 
+}
+
+#artist-showcase > h1 
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%, -50%);
+
+    color: var(--background); 
+    font-size: 10vw;
+
+    text-align: center;
+}
+
+#artist-showcase > h1.top
+{
+    color: transparent;
+    -webkit-text-stroke: 0.5px var(--foreground);
+}
+
+#artist-showcase > img 
+{
+    margin: 2rem; 
+    /* border-radius: 100%; */
 }
 /* #endregion */
 
+
+/* ^ Search */
+#search-albums
+{
+    margin-bottom: 16vh;
+}
+
+#search-albums > .content, #search-artists > .content, #new-releases > .content 
+{
+    max-height: 11.5rem;
+    overflow: hidden;
+}
 
 

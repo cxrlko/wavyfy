@@ -51,8 +51,6 @@ div.track-card > div.metadata
 }
 /* #endregion */
 
-
-
 /* #region Album Card */
 a.album-card
 {
@@ -99,11 +97,56 @@ a.album-card > div.content > p.artists
 a.album-card > div.content > p.name 
 {
     max-height: 3rem;
+    overflow: hidden;
 }
 
 /* #endregion */
 
+/* #region Artist Card */
+.artist-card 
+{
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between;
+
+    padding: 0.5rem 0.5rem;
+    border-radius: 1rem;
+    /* border: 1px solid var(--shade); */
+
+    color: var(--foreground); 
+
+}
+
+.artist-card > .pfp 
+{
+    background-color: var(--shade);
+    min-width: 4rem; 
+    min-height: 4rem;
+    max-width: 4rem; 
+    max-height: 4rem;
 
 
+    overflow: hidden;
+    border-radius: 100%;
 
+}
+
+.artist-card > .pfp > img
+{
+    width: 100%; 
+    height: 100%;
+    object-fit: cover;
+}
+
+.artist-card > div.info 
+{
+    margin: 0px 1rem; 
+    flex: 1 1 100%;
+}
+
+.artist-card > div.info  > p.small 
+{
+    color: var(--gray); 
+}
+/* #endregion */
 

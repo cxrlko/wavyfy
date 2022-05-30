@@ -7,11 +7,13 @@
 
 import * as React from "react"
 import { Architect } from "../../admin/architect";
+import { Chip } from "../../components/chip";
+import { Divider } from "../../components/divider";
 import { Grid } from "../../components/grid";
 import { Region } from "../../components/region";
 import { Axis, Scrollview } from "../../components/scrollview";
 import { Album } from "../../models/album";
-import { Artist } from "../../models/artist";
+import { Artist, MVArtist } from "../../models/artist";
 import { Track } from "../../models/track";
 import { getIDfromURL } from "../../utilities/getId";
 import { AlbumCard } from "../cards/albumCard";
@@ -34,7 +36,9 @@ function ArtistPage(props: IArtistPageProperties)
     React.useEffect(() => 
     {
 
-        const artistID = getIDfromURL(window.location.pathname); 
+        const artistID
+        = getIDfromURL(window.location.pathname); 
+        // = `4q3ewBCX7sLwd24euuV69X`;
         
         setupArtistPage(artistID); 
 
@@ -54,7 +58,7 @@ function ArtistPage(props: IArtistPageProperties)
 
     return (
 
-    <Scrollview axis={ Axis.vertical } classes="sheet" content=
+    <Scrollview id="artistpage" axis={ Axis.vertical } classes="sheet" content=
     {
     <>
         { artist && <ArtistShowcase artist={ artist } /> }
@@ -69,7 +73,7 @@ function ArtistPage(props: IArtistPageProperties)
 }
 
 
-// #region Artist Showcase 
+// #region MVArtist Showcase 
 interface IArtistShowcaseProperties 
 {
     artist: Artist; 
@@ -80,7 +84,12 @@ function ArtistShowcase(props: IArtistShowcaseProperties)
 
     return (
 
-        <h1>{ props.artist.name }</h1>
+        <div id="artist-showcase">
+            <h1>{ props.artist.name }</h1>
+            <img src={ props.artist.coverURL } alt={ props.artist.name } />
+            <h1 className="top">{ props.artist.name }</h1>
+        </div>
+
 
     )
 
@@ -88,7 +97,7 @@ function ArtistShowcase(props: IArtistShowcaseProperties)
 // #endregion
 
 
-// #region Artist Albums 
+// #region MVArtist Albums 
 interface IArtistAlbums 
 {
     albums: Album[]; 
@@ -119,7 +128,7 @@ function ArtistAlbums(props: IArtistAlbums)
 // #endregion
 
 
-// #region Artist Top Tracks 
+// #region MVArtist Top Tracks 
 interface IArtistTopTracks 
 {
     songs: Track[]; 

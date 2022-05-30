@@ -1,7 +1,7 @@
 
 
 
-import { Artist } from "./artist";
+import { MVArtist } from "./artist";
 import { Track } from "./track";
 
 
@@ -20,7 +20,7 @@ class Album
     trackCount : number; 
     popularity: number; 
 
-    artists: Artist[] = [];
+    artists: MVArtist[] = [];
 
     constructor(data: any)
     {   
@@ -35,7 +35,7 @@ class Album
         this.trackCount = data.total_tracks; 
         this.popularity = data.popularity; 
 
-        this.artists = (data.artists as any[]).map((artistData) => new Artist(artistData)); 
+        this.artists = (data.artists as any[]).map((artistData) => new MVArtist(artistData)); 
     }
 
 }

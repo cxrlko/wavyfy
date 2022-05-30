@@ -57,7 +57,7 @@ function HomePage(props: IHomePageProperties)
     <>
     {
         
-        <Region header="New Releases" content=
+        <Region articleID="new-releases" header="New Releases" content=
         {
             <Grid gap={{ x: 1, y: 2 }} minItemWidth={ 342 } contentItems=
             {

@@ -4,7 +4,8 @@
 import { Buffer } from "buffer";
 import { METHODS } from "http";
 import { Album } from "../models/album";
-import { Artist } from "../models/artist";
+import { Artist, MVArtist } from "../models/artist";
+import { Query } from "../models/query";
 import { Track } from "../models/track";
 
 const clientID = `7c79ca1d91b24f3fa7057f1bfc10bcec`; 
@@ -87,8 +88,9 @@ class Network
 
     //  ^ Search
     // #region Fetch Query Items
-    async fetchQueryItems(query: string)
+    async fetchQueryItems(query: string) : Promise<Query>
     {
+        let item: Query = undefined; 
         const authToken = await this.fetchAuthToken(); 
 
         const fetchOptions = 
@@ -103,8 +105,12 @@ class Network
         .then((responce) => { return responce.json( )})
         .then((json) => 
         {
-            console.log(json); 
+            item = new Query(json); 
         }) 
+
+        if (item == undefined) { console.log(`Couldn't get query for item: ${ query }`); return; }; 
+
+        return item; 
     }
     // #endregion
 
@@ -168,8 +174,8 @@ class Network
     // #endregion
 
 
-    // ^ Artist 
-    // #region Fetch Artist 
+    // ^ MVArtist 
+    // #region Fetch MVArtist 
     async fetchArtist(artistID) : Promise<Artist>
     {
         let artist: Artist = undefined; 
@@ -196,7 +202,7 @@ class Network
     }
     // #endregion
 
-    // #region Fetch Artist Top Track 
+    // #region Fetch MVArtist Top Track 
     async fetchArtistTopTracks(artistID: string) : Promise<Track[]>
     {
         let items: Track[] = []; 
@@ -224,7 +230,7 @@ class Network
     }
     // #endregion
 
-    // #region Fetch Artist Top Albums 
+    // #region Fetch MVArtist Top Albums 
     async fetchArtistAlbums(artistID: string) : Promise<Album[]>
     {
         let items: Album[] = []; 
