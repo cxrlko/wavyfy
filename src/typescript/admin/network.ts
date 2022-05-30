@@ -97,7 +97,7 @@ class Network
             }
         }
 
-        await fetch(`https://api.spotify.com/v1/search?q=${ query }`, fetchOptions as any)
+        await fetch(`https://api.spotify.com/v1/search?q=${ query }&market=US&type=album,track,artist`, fetchOptions as any)
         .then((responce) => { return responce.json( )})
         .then((json) => 
         {
