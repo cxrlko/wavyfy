@@ -2,6 +2,7 @@
 
 
 import * as React from "react"
+import { useLocation } from "react-router";
 import { Architect } from "../../admin/architect";
 import { Grid } from "../../components/grid";
 import { Region } from "../../components/region";
@@ -15,6 +16,7 @@ import { ArtistCard } from "../cards/artistCard";
 import { TrackCard } from "../cards/trackCard";
 
 
+
 interface ISearchPageProperties
 {
 
@@ -22,7 +24,7 @@ interface ISearchPageProperties
 
 function SearchPage(props: ISearchPageProperties)
 {
-    
+    const location = useLocation(); 
     const [query, setQuery] = React.useState<Query>( undefined );
 
 
@@ -34,10 +36,11 @@ function SearchPage(props: ISearchPageProperties)
         const searchString = decodeURIComponent(encoded);
 
         // const searchString = `The A Team`;
-    
+        console.log(`Changed with: ${ searchString }`); 
+
         setupPage(searchString); 
 
-    }, []); 
+    }, [location]); 
     // #endregion
 
     // #region Fetch Query Items 

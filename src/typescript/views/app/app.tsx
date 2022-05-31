@@ -32,7 +32,7 @@ class App extends React.Component
                 <Route exact index element={ <HomePage /> } />
                 <Route path="/album/:id" element={ <AlbumPage /> } />
                 <Route path="/artist/:id" element={ <ArtistPage /> } />
-                <Route path="/search/:id" element={ <SearchPage /> } />
+                <Route path="/search/*" element={ <SearchPage /> } />
             </Routes>
         </>
         )
