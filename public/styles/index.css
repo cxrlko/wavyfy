@@ -1,7 +1,8 @@
 
 
 
-
+        
+/* transform: translateX(-100%) translateY(-20%) rotateZ(-25deg); */
 
 
 /* #region Global */
@@ -24,7 +25,7 @@ nav
     align-items: center; 
     justify-content: space-between;
 
-    margin: 0.75rem 2vw; 
+    margin: 0.75rem 2rem; 
 }
 
 nav > div.navigation, div.navigation > div.directions
@@ -41,8 +42,24 @@ div.directions > div.icon
 
 #Logo 
 {
-    margin-right: 4vw;
+    /* margin-right: 4vw; */
     fill: var(--foreground);
+
+    display: flex; 
+    align-items: center; 
+    justify-content: flex-start; 
+    
+    color: var(--foreground);
+}
+
+#Logo > svg 
+{
+    min-width: 1.5rem; 
+    min-height: 1.5rem;
+    max-width: 1.5rem; 
+    max-height: 1.5rem;
+
+    margin-right: 0.5rem;
 }
 
 nav > div.links
@@ -60,6 +77,47 @@ nav .links > .icon
 /* #endregion */
 
 
+/* ^ Home */
+/* #region Home */
+#Home .content > article:last-child 
+{
+    margin-bottom: 16vh;
+}
+
+#new-releases 
+{
+    position: relative;
+
+    height: 64vh; 
+    min-height: 150px; 
+    max-height: 500px;
+
+    margin-top: 1rem; 
+    margin-bottom: 3rem;
+
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+}
+
+#new-releases > img  
+{
+    position: absolute;
+    transform-origin: bottom;
+
+    z-index: 0; 
+
+    width: 54vmin; 
+    height: 54vmin;
+
+
+}
+
+
+
+
+
+/* ^ Album page */
 /* #region Album Page Showcase */
 #albumpage #showcase 
 {
@@ -293,10 +351,20 @@ nav .links > .icon
     margin-bottom: 16vh;
 }
 
-#search-albums > .content, #search-artists > .content, #new-releases > .content 
+#search-albums > .content, #search-artists > .content, #top-tracks > .content, #top-artists > .content, #top-albums > .content
 {
     max-height: 11.5rem;
     overflow: hidden;
 }
+
+@media screen and (max-width: 704px) 
+{
+    #search-albums > .content, #search-artists > .content, #top-tracks > .content, #top-artists > .content, #top-albums > .content
+    {
+        max-height: 30rem;
+    }
+
+}
+
 
 

@@ -68,16 +68,7 @@ function HomePage(props: IHomePageProperties)
     <Scrollview id="Home" axis={ Axis.vertical } classes="sheet" content=
     {
     <>
-        <HomeShowcase albums={ newReleases.slice(0, 3) } />
-
-        <Region articleID="new-releases" header="New Releases" content=
-        {
-            <Grid gap={{ x: 1, y: 2 }} minItemWidth={ 280 } contentItems=
-            {
-                (newReleases.map((release, index) => <AlbumCard key={ index } album={ release } />))
-            }/>
-        }/>
-
+        <HomeShowcase albums={ newReleases.slice(0, 10) } />
 
         <Region articleID="top-artists" header="Top Artists" content=
         {
@@ -122,16 +113,23 @@ interface IHomeShowcaseProperties
 
 interface IHomeShowcaseStates 
 {
-
+    index: number; 
 }
 
 class HomeShowcase extends React.Component <IHomeShowcaseProperties, IHomeShowcaseStates>
 {
+    scrollThreshhold : number = 0.4; 
+    startTouch : React.TouchEvent<HTMLDivElement> = undefined; 
+    endTouch : React.TouchEvent<HTMLDivElement> = undefined; 
+
+    touchStartTimer : number = 0; 
+    touchEndTimer : number = 0;
 
     constructor(props: IHomeShowcaseProperties)
     {
         super(props); 
-        this.state = {  }; 
+        this.state = { index: 0 }; 
+
     }
 
 
@@ -139,7 +137,50 @@ class HomeShowcase extends React.Component <IHomeShowcaseProperties, IHomeShowca
     {
         return (
 
-            <></>
+            <div
+                onTouchStart={ (event) => 
+                {
+
+                    this.startTouch = event;
+                    this.touchStartTimer = Date.now();
+                }}
+                onTouchEnd={ (event) => 
+                {
+                    event.preventDefault(); 
+
+                    this.endTouch = event;
+                    this.touchEndTimer = Date.now();
+
+                    let distance = ((this.endTouch.changedTouches[0].pageX) - (this.startTouch.changedTouches[0].pageX));
+                    let time = (this.touchEndTimer - this.touchStartTimer);
+                    let velocity = (distance / time);
+
+                    //main Left
+                    if ((velocity < -this.scrollThreshhold))
+                    {
+                        if (this.state.index == this.props.albums.length - 1) { return; }
+                        this.setState({ index: this.state.index + 1 }); 
+                    }
+                    //main left
+                    else if ((velocity > this.scrollThreshhold))
+                    {
+                        if (this.state.index == 0) { return; }
+                        this.setState({ index: this.state.index - 1 }); 
+                    }
+
+                }}
+                id="new-releases">
+                {
+                    (this.props.albums.map((album, albumIndex) => 
+                        <img
+                            className={ `${ albumIndex == this.state.index ? `active` : `` }` }
+                            key={ albumIndex } 
+                            src={ album.coverURL }
+                            alt={ album.title }
+                        ></img> 
+                    ))
+                }
+            </div>
 
         );
     }

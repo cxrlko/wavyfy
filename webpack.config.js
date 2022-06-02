@@ -30,7 +30,7 @@ module.exports =
             directory: path.join(__dirname, 'public'),
         },
         compress: true,
-        port: 3011,
+        port: 5500,
     },
     // watch: true,
     // watchOptions:
