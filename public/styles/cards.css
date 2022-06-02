@@ -19,6 +19,8 @@ div.track-card > div
 
 div.track-card > div.cover 
 {
+    min-width: 3rem; 
+    min-height: 3rem;
     max-width: 3rem; 
     max-height: 3rem;
 
@@ -28,7 +30,7 @@ div.track-card > div.cover
 div.track-card > div.info 
 {
     max-width: 100%;
-    margin: 0px 2rem; 
+    margin: 0px 1rem; 
 }
 
 div.track-card > div.info > a
@@ -37,6 +39,7 @@ div.track-card > div.info > a
     align-items: center; 
     justify-content: flex-start;
 
+    min-width: 2rem;
     max-width: min-content;
 }
 div.track-card > div.info > a > p
@@ -45,8 +48,11 @@ div.track-card > div.info > a > p
     color: var(--tint);
 }
 
+
+
 div.track-card > div.metadata 
 {
+    min-width: 2rem;
     max-width: min-content;
 }
 /* #endregion */

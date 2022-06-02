@@ -36,7 +36,7 @@ function SearchPage(props: ISearchPageProperties)
         const searchString = decodeURIComponent(encoded);
 
         // const searchString = `The A Team`;
-        console.log(`Changed with: ${ searchString }`); 
+        // console.log(`Changed with: ${ searchString }`); 
 
         setupPage(searchString); 
 

@@ -93,6 +93,14 @@ html
 }
 
 
+@media screen and (min-width: 0px) and (max-width: 599px)
+{
+    html 
+    {
+        font-size: 14px;
+    }
+}
+
 @media screen and (min-width: 600px) and (min-height: 640px)
 {
     html 
@@ -100,14 +108,14 @@ html
         font-size: 16px;
     }
 }
-/* 
+
 @media screen and (min-width: 840px) and (min-height: 680px)
 {
     html 
     {
         font-size: 18px;
     }
-} */
+}
 
 body 
 {

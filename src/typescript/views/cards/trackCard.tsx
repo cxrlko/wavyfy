@@ -37,7 +37,7 @@ function TrackCard(props: ITrackCardProperties)
         </div>
 
         <div className="info">
-            <p className="subtitle">{ props.track.title }</p>
+            <p className="subtitle truncated">{ props.track.title }</p>
 
             <Link to={ `/artist/${ props.track.artists[0].id }` } children=
             {

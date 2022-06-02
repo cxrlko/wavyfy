@@ -27,6 +27,7 @@ function AlbumPage(props: IAlbumPageProperties)
     React.useEffect(() => 
     {
         const id = getIDfromURL(window.location.pathname); 
+        // const id = `7dqftJ3kas6D0VAdmt3k3V`; 
         setupPage(id); 
 
     }, []); 
