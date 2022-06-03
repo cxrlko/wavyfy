@@ -1,9 +1,7 @@
 
 
 
-        
-/* transform: translateX(-100%) translateY(-20%) rotateZ(-25deg); */
-/* translateX(0%) translateY(0%) rotateZ(0deg) */
+
 
 
 /* #region Global */
@@ -91,7 +89,7 @@ nav .links > .icon
 
     height: 64vh; 
     min-height: 150px; 
-    max-height: 500px;
+    max-height: 464px;
 
     margin-top: 1rem; 
     margin-bottom: 3rem;
@@ -99,6 +97,10 @@ nav .links > .icon
     display: flex; 
     align-items: center; 
     justify-content: center;
+
+    --viewablePosition: translateX(0%) translateY(0%) rotateZ(0deg);
+    --unviewablePosition: translateX(-120%) translateY(0%) rotateZ(-32deg);
+
 }
 
 #new-releases > img
@@ -106,10 +108,92 @@ nav .links > .icon
     position: absolute;
     transform-origin: bottom;
 
+    opacity: 0%;
+
     width: 54vmin; 
     height: 54vmin;
+
+    animation-duration: 500ms;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
 }
 
+#new-releases > img.lost 
+{
+    animation-name: loseActive;
+
+}
+
+#new-releases > img.active 
+{
+    animation-name: gainActive;
+} 
+
+#new-releases > img.recover
+{
+    animation-name: recoverActive;
+}
+
+
+
+
+/* #region Animations */
+@keyframes gainActive 
+{
+    0% 
+    {
+        transform: var(--viewablePosition);
+        z-index: 20;
+        opacity: 0%; ;
+    }
+    100%
+    {
+        z-index: 20; 
+        opacity: 100%; 
+        transform: var(--viewablePosition);
+    }
+}
+
+@keyframes recoverActive 
+{
+    0%
+    {
+        z-index: 20; 
+        opacity: 20%;
+        transform: var(--unviewablePosition);
+    }
+
+    100% 
+    {
+        z-index: 20; 
+        opacity: 100%;
+        transform: var(--viewablePosition);
+    }
+}
+
+@keyframes loseActive 
+{
+    0%
+    {
+        z-index: 20; 
+        opacity: 100%;
+        transform: var(--viewablePosition);
+    }
+
+    80% 
+    {
+        opacity: 80%;
+        z-index: 20;
+    }
+
+    100% 
+    {
+        z-index: 0; 
+        opacity: 0%;
+        transform: var(--unviewablePosition);
+    }
+}
+/* #endregion */
 
 
 /* ^ Album page */

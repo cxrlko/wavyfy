@@ -9,21 +9,22 @@
 {
     /* #region Colors */
     /* - Semantic */
-    /* --foreground: #0B0B0A;
+    --foreground: #0B0B0A;
+    --accent: #555770;
     --tint: #8F90A6;
     --gray: #C7C9D9;
     --shade: #EBEBF0;
-    --highlight: #F6F6F7;
-    --background: #FFFFFF; */
+    --highlight: #F2F2F5;
+    --background: #FAFAFC;
 
 
-    --foreground: #FAFAFC; 
+    /* --foreground: #FAFAFC; 
     --accent: #F2F2F5; 
-    --tint: #c0c2d1; 
-    --gray: #8F90A6; 
-    --shade: #4D4F65; 
-    --highlight: #313352; 
-    --background: #28293D; 
+    --tint: #EBEBF0; 
+    --gray: #C7C9D9; 
+    --shade: #8F90A6; 
+    --highlight: #555770; 
+    --background: #0B0B0A;  */
 
     /* - Semantic */
     --success: #39D98A;
