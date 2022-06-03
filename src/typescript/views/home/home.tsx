@@ -21,6 +21,8 @@ import { ArtistCard } from "../cards/artistCard";
 import { TrackCard } from "../cards/trackCard";
 
 
+
+
 interface IHomePageProperties 
 {
 
@@ -115,10 +117,16 @@ interface IHomeShowcaseProperties
     albums: Album[]; 
 }
 
+enum scrollAction 
+{
+    forward, 
+    backward
+}
+
+let previousIndex : number = -1; 
 
 function HomeShowcase(props: IHomeShowcaseProperties)
 {
-
     const [index, setIndex] = React.useState <number> (0); 
 
     // #region Scroll variables
@@ -134,9 +142,19 @@ function HomeShowcase(props: IHomeShowcaseProperties)
     const getImageClassList = React.useCallback((albumIndex: number) => 
     {
         const list : string[] = []; 
-        if (albumIndex == index) { list.push(`active`)}; 
-        if (albumIndex < index) { list.push(`lost`) };
+        if (albumIndex == index) 
+        {
+            console.log(previousIndex, index); 
+            list.push((previousIndex <= index) ? `active` : `recover`); 
 
+            previousIndex = albumIndex; 
+
+        }; 
+        if (albumIndex < index) { list.push(`dismissed`) }
+        else if (albumIndex > index) { list.push(`lost`) };
+
+
+         
         return list.join(` `); 
 
         // return `${ index }`

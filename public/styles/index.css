@@ -113,14 +113,19 @@ nav .links > .icon
     width: 54vmin; 
     height: 54vmin;
 
-    animation-duration: 500ms;
+    animation-duration: 400ms;
     animation-timing-function: ease-out;
     animation-fill-mode: forwards;
 }
 
-#new-releases > img.lost 
+#new-releases > img.lost
 {
-    animation-name: loseActive;
+    animation-name: lost;
+}
+
+#new-releases > img.dismissed 
+{
+    animation-name: dismissedActive;
 
 }
 
@@ -171,7 +176,7 @@ nav .links > .icon
     }
 }
 
-@keyframes loseActive 
+@keyframes dismissedActive 
 {
     0%
     {
@@ -180,9 +185,9 @@ nav .links > .icon
         transform: var(--viewablePosition);
     }
 
-    80% 
+    50% 
     {
-        opacity: 80%;
+        opacity: 75%;
         z-index: 20;
     }
 
@@ -191,6 +196,18 @@ nav .links > .icon
         z-index: 0; 
         opacity: 0%;
         transform: var(--unviewablePosition);
+    }
+}
+
+@keyframes lost 
+{
+    0% 
+    {
+        opacity: 100%;
+    }
+    100% 
+    {
+        opacity: 0%;
     }
 }
 /* #endregion */
