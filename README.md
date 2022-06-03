@@ -72,13 +72,13 @@ npm install babel-core babel-loader babel-preset-env babel-preset-react --save-d
 
 ## Roadmap
 
-- [x] Home Page
-- [x] Add back to top links
-- [x] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
+- [x] Home Stash Albums
+- [x] Album Page
+- [x] Fixed Scrolling
+- [ ] Dynamic Top Page color gradients
+- [ ] Flexible search bar
+- [ ] Mobile Scrollbar aticles
 - [ ] 
-  - [ ] 
-  - [ ] 
 
 
 
