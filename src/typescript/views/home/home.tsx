@@ -117,17 +117,35 @@ interface IHomeShowcaseProperties
     albums: Album[]; 
 }
 
-enum scrollAction 
-{
-    forward, 
-    backward
-}
-
 let previousIndex : number = -1; 
 
 function HomeShowcase(props: IHomeShowcaseProperties)
 {
     const [index, setIndex] = React.useState <number> (0); 
+
+
+
+    const handleWindowPaging = React.useCallback((event: KeyboardEvent) => 
+    {
+
+        if (event.key == `ArrowLeft`) { if (index == 0) { return; } setIndex( index - 1 ); }
+        else if ((event.key == `ArrowRight`)) { if (index == props.albums.length - 1) { return; } setIndex( index + 1 ); };
+
+    }, [index]); 
+
+
+    React.useEffect(() => 
+    {
+
+        window.addEventListener((`keydown`), handleWindowPaging);
+
+        return () => 
+        {
+            window.removeEventListener('keydown', handleWindowPaging);
+        }
+        
+    }, [index]); 
+
 
     // #region Scroll variables
     const scrollThreshhold : number = 0.4; 
@@ -138,26 +156,23 @@ function HomeShowcase(props: IHomeShowcaseProperties)
     let touchEndTimer : number = 0;
     // #endregion
 
+
  
     const getImageClassList = React.useCallback((albumIndex: number) => 
     {
         const list : string[] = []; 
         if (albumIndex == index) 
         {
-            console.log(previousIndex, index); 
             list.push((previousIndex <= index) ? `active` : `recover`); 
 
             previousIndex = albumIndex; 
 
         }; 
         if (albumIndex < index) { list.push(`dismissed`) }
-        else if (albumIndex > index) { list.push(`lost`) };
+        else if (albumIndex > index + 2) { list.push(`lost`) };
 
 
-         
         return list.join(` `); 
-
-        // return `${ index }`
 
     }, [index]); 
 

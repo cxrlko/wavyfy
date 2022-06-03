@@ -91,6 +91,7 @@ nav .links > .icon
     min-height: 150px; 
     max-height: 464px;
 
+
     margin-top: 1rem; 
     margin-bottom: 3rem;
 
@@ -115,28 +116,94 @@ nav .links > .icon
 
     animation-duration: 400ms;
     animation-timing-function: ease-out;
-    animation-fill-mode: forwards;
+}
+
+
+#new-releases > img.active + img, #new-releases > img.recover + img
+{
+    opacity: 100%; 
+    z-index: 10;
+    transform: rotateZ(-15deg);
+
+    animation-name: slide;
+
+}
+
+@keyframes slide
+{
+    0% 
+    {
+        opacity: 100%; 
+        z-index: 10;
+        transform: rotateZ(5deg);
+    }
+    100%
+    {
+        opacity: 100%; 
+        z-index: 10;
+        transform: rotateZ(-15deg);
+    }
+}
+
+#new-releases > img.active + img + img, #new-releases > img.recover + img + img
+{
+    opacity: 100%; 
+    z-index: 5;
+    transform: rotateZ(15deg);
+
+    animation-name: shift;
+}
+
+@keyframes shift
+{
+    0% 
+    {
+        opacity: 100%; 
+        z-index: 5;
+        transform: rotateZ(5deg);
+    }
+    100% 
+    {
+        opacity: 100%; 
+        z-index: 5;
+        transform: rotateZ(15deg);
+    }
 }
 
 #new-releases > img.lost
 {
     animation-name: lost;
+
+    opacity: 0%;
 }
 
 #new-releases > img.dismissed 
 {
     animation-name: dismissedActive;
 
+    z-index: 0; 
+    opacity: 0%;
+    transform: var(--unviewablePosition);
+
 }
 
 #new-releases > img.active 
 {
     animation-name: gainActive;
-} 
+
+    z-index: 20; 
+    opacity: 100%; 
+    transform: var(--viewablePosition);
+}
+
 
 #new-releases > img.recover
 {
     animation-name: recoverActive;
+
+    z-index: 20; 
+        opacity: 100%;
+        transform: var(--viewablePosition);
 }
 
 
@@ -147,9 +214,9 @@ nav .links > .icon
 {
     0% 
     {
-        transform: var(--viewablePosition);
-        z-index: 20;
-        opacity: 0%; ;
+        opacity: 100%; 
+        z-index: 10;
+        transform: rotateZ(-15deg);
     }
     100%
     {
