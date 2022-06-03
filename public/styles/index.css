@@ -83,26 +83,36 @@ nav .links > .icon
     margin-bottom: 16vh;
 }
 
+#home-showcase 
+{
+    margin-bottom: 4vh;
+}
+
 #new-releases 
 {
     position: relative;
 
-    height: 64vh; 
-    min-height: 150px; 
-    max-height: 464px;
+    height: 40vh; 
+    /* min-height: 150px; 
+    max-height: 350px; */
 
 
-    margin-top: 1rem; 
-    margin-bottom: 3rem;
+    margin: 8vmax; 
+    padding-top: 2rem; 
+    padding-bottom: 3rem;
 
     display: flex; 
     align-items: center; 
     justify-content: center;
 
+    cursor: pointer;
+
     --viewablePosition: translateX(0%) translateY(0%) rotateZ(0deg);
-    --unviewablePosition: translateX(-120%) translateY(0%) rotateZ(-32deg);
+    --unviewablePosition: translateX(-50vw) translateY(0%) rotateZ(-32deg);
 
 }
+
+
 
 #new-releases > img
 {
@@ -111,12 +121,24 @@ nav .links > .icon
 
     opacity: 0%;
 
-    width: 54vmin; 
-    height: 54vmin;
+    width: 56vh; 
+    height: 56vh;
+    padding: 2vh; 
 
     animation-duration: 400ms;
     animation-timing-function: ease-out;
 }
+
+@media screen and (min-width: 700px)
+{
+    #new-releases > img
+    {
+        width: 44vh !important; 
+        height: 44vh !important;
+    }
+}
+
+
 
 
 #new-releases > img.active + img, #new-releases > img.recover + img
@@ -424,7 +446,7 @@ nav .links > .icon
     position: relative;
 
     display: flex; 
-    align-items: center; 
+    align-items: flex-start; 
     justify-content: space-between;
 
     margin: 1rem 0px; 

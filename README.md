@@ -23,7 +23,7 @@
   <h3 align="center">Word Scrambler</h3>
 
   <div align="center">
-    <a href="https://github.com/cxrlko/wordscrambler/blob/master/LICENSE.txt">Licence</a>
+    <a href="https://github.com/ckomondi/wordscrambler/blob/master/LICENSE.txt">Licence</a>
   </div>
 
 </div>
@@ -36,9 +36,9 @@ Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam dolor fugiat commo
 
 ## Tech Stack
 
-* [Spotify API](https://developer.spotify.com/documentation/web-api) (Music Data)
+* [Spotify RESTful API](https://developer.spotify.com/documentation/web-api) (Music Data)
 * [React.js](https://reactjs.org/) (FrontEnd Framework)
-* [TypeScript](https://www.typescriptlang.org/) (Adding types to JavaScript)
+* [TypeScript](https://www.typescriptlang.org/) (Adding JavaScript Casing)
 * [WebPack](https://webpack.js.org/) (App Bundler)
 
 
@@ -89,7 +89,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 ## Contact
 
 Carl Omondi - [@carlkomondi](https://www.linkedin.com/in/carlkomondi/) - carlkomondi@gmail.com <br>
-Project Link: [Github Repo](https://github.com/cxrlko/wordscrambler)
+Project Link: [Github Repo](https://github.com/ckomondi/wordscrambler)
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -97,7 +97,7 @@ Project Link: [Github Repo](https://github.com/cxrlko/wordscrambler)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 [license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
-[license]: https://github.com/cxrlko/template-react-app/blob/master/LICENSE.txt
+[license]: https://github.com/ckomondi/template-react-app/blob/master/LICENSE.txt
 
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin]: https://linkedin.com/in/carlkomondi

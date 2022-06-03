@@ -7,7 +7,9 @@
 
 
 
+import { addListener } from "process";
 import * as React from "react"
+import { useNavigate } from "react-router";
 import { collapseTextChangeRangesAcrossMultipleVersions } from "typescript";
 import { Architect } from "../../admin/architect";
 import { Grid } from "../../components/grid";
@@ -121,22 +123,30 @@ let previousIndex : number = -1;
 
 function HomeShowcase(props: IHomeShowcaseProperties)
 {
+
+    const navigate = useNavigate();
     const [index, setIndex] = React.useState <number> (0); 
 
 
-
+    // #region Handle Window Paging
     const handleWindowPaging = React.useCallback((event: KeyboardEvent) => 
     {
-
         if (event.key == `ArrowLeft`) { if (index == 0) { return; } setIndex( index - 1 ); }
         else if ((event.key == `ArrowRight`)) { if (index == props.albums.length - 1) { return; } setIndex( index + 1 ); };
 
     }, [index]); 
+    // #endregion
 
+    // #region Navigate to current album
+    const navigateToCurrentAlbum = React.useCallback(() => 
+    {
+        navigate(`/album/${ props.albums[index].id }`); 
+
+    }, [index, props.albums]); 
+    // #endregion
 
     React.useEffect(() => 
     {
-
         window.addEventListener((`keydown`), handleWindowPaging);
 
         return () => 
@@ -149,15 +159,14 @@ function HomeShowcase(props: IHomeShowcaseProperties)
 
     // #region Scroll variables
     const scrollThreshhold : number = 0.4; 
-    let startTouch : React.TouchEvent<HTMLDivElement> = undefined; 
-    let endTouch : React.TouchEvent<HTMLDivElement> = undefined; 
+    let startTouch : React.TouchEvent<HTMLElement> = undefined; 
+    let endTouch : React.TouchEvent<HTMLElement> = undefined; 
 
     let touchStartTimer : number = 0; 
     let touchEndTimer : number = 0;
     // #endregion
 
-
- 
+    // #region Get Image Class List
     const getImageClassList = React.useCallback((albumIndex: number) => 
     {
         const list : string[] = []; 
@@ -175,65 +184,79 @@ function HomeShowcase(props: IHomeShowcaseProperties)
         return list.join(` `); 
 
     }, [index]); 
+    // #endregion
 
-
+    // #region Component
     return (
 
-    <React.Fragment>
+        <article
 
-        <div
-            onTouchStart={ (event) => 
+        onTouchStart={ (event) => 
+        {
+
+            startTouch = event;
+            touchStartTimer = Date.now();
+        }}
+        onTouchEnd={ (event) => 
+        {
+            endTouch = event;
+            touchEndTimer = Date.now();
+
+            let distance = ((endTouch.changedTouches[0].pageX) - (startTouch.changedTouches[0].pageX));
+            let time = (touchEndTimer - touchStartTimer);
+            let velocity = (distance / time);
+
+
+            //Scroll Left
+            if ((velocity > scrollThreshhold))
             {
-
-                startTouch = event;
-                touchStartTimer = Date.now();
-            }}
-            onTouchEnd={ (event) => 
-            {
-                event.preventDefault(); 
-
-                endTouch = event;
-                touchEndTimer = Date.now();
-
-                let distance = ((endTouch.changedTouches[0].pageX) - (startTouch.changedTouches[0].pageX));
-                let time = (touchEndTimer - touchStartTimer);
-                let velocity = (distance / time);
-
-
-                //Scroll Left
-                if ((velocity > scrollThreshhold))
-                {
-                    if (index == 0) { return; }
-                    setIndex( index - 1 ); 
-                }
-                // Scroll Right
-                else if ((velocity < -scrollThreshhold))
-                {
-                    if (index == props.albums.length - 1) { return; }
-                    setIndex( index + 1 ); 
-                }
-
-            }}
-            id="new-releases">
-            {
-
-                (props.albums.map((album : Album, albumIndex : number) => 
-                    <img
-                        className={ getImageClassList(albumIndex) }
-                        key={ albumIndex } 
-                        src={ album.coverURL }
-                        alt={ album.title }
-                    ></img> 
-                ))
+                if (index == 0) { return; }
+                setIndex( index - 1 ); 
             }
-        </div>
+            // Scroll Right
+            else if ((velocity < -scrollThreshhold))
+            {
+                if (index == props.albums.length - 1) { return; }
+                setIndex( index + 1 ); 
+            }
 
-        <p>{ index }</p>
+        }}
+        id="home-showcase">
+        
+            <div
+                onClick={ () =>
+                {
+                    navigateToCurrentAlbum(); 
+                }}
+                id="new-releases">
+                {
 
+                    (props.albums.map((album : Album, albumIndex : number) => 
+                        <img
+                            className={ getImageClassList(albumIndex) }
+                            key={ albumIndex } 
+                            src={ album.coverURL }
+                            alt={ album.title }
+                        ></img> 
+                    ))
+                }
+            </div>
 
+            {
+                props.albums[index] &&
+                <div className="info">
+                    <p className="title truncated">{ props.albums[index].title }</p>
 
-    </React.Fragment>
+                    {
+                        props.albums[index].artists[0] &&
+                        <p className="truncated">{ props.albums[index].artists[0].name } &middot; { props.albums[index].releaseDate.getFullYear() }</p>
+                    }
+                </div>
+            }
+
+        </article>
     )
+    // #endregion
 
 
 }
