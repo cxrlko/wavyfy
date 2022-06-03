@@ -101,50 +101,15 @@ nav .links > .icon
     justify-content: center;
 }
 
-#new-releases > img  
+#new-releases > img
 {
     position: absolute;
     transform-origin: bottom;
 
-    opacity: 0%;
-    z-index: 0; 
-
     width: 54vmin; 
     height: 54vmin;
-
-    animation-name: disabled; 
-    animation-duration: 300ms; 
-    animation-timing-function: ease-out; 
-    animation-fill-mode: forwards;
 }
 
-@keyframes disabled 
-{
-
-    100%
-    {
-        opacity: 100%;
-        transform: translateX(-100%) translateY(-20%) rotateZ(-25deg);
-    }
-}
-
-#new-releases > img.active 
-{
-    animation-name: enabled; 
-    animation-duration: 300ms; 
-    animation-timing-function: ease-out; 
-    animation-fill-mode: forwards;
-}
-
-@keyframes enabled 
-{
-    100% 
-    {
-        opacity: 100%; 
-        z-index: 20; 
-        transform: translateX(0%) translateY(0%) rotateZ(0deg);
-    }
-}
 
 
 /* ^ Album page */
