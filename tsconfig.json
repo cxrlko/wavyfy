@@ -10,6 +10,7 @@
         "module": "ESNext", 
         "target": "esnext",
         "moduleResolution": "node",
+        "allowSyntheticDefaultImports": true
     },
     "exclude": 
     [

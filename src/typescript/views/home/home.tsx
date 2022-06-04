@@ -6,7 +6,6 @@
 
 
 
-
 import { addListener } from "process";
 import * as React from "react"
 import { useNavigate } from "react-router";
@@ -65,8 +64,6 @@ function HomePage(props: IHomePageProperties)
 
     }, []); 
     // #endregion
-
-
 
     // #region Component 
     return (
@@ -127,6 +124,12 @@ function HomeShowcase(props: IHomeShowcaseProperties)
 
     const navigate = useNavigate();
     const [index, setIndex] = React.useState <number> (0); 
+
+
+    const pallete = React.useMemo(() => 
+    {
+
+    }, [index]); 
 
 
     // #region Handle Window Paging
@@ -270,6 +273,8 @@ function HomeShowcase(props: IHomeShowcaseProperties)
 
 }
 
+
+// #endregion
 
 
 
