@@ -12,6 +12,7 @@ import * as React from "react"
 import { useNavigate } from "react-router";
 import { collapseTextChangeRangesAcrossMultipleVersions } from "typescript";
 import { Architect } from "../../admin/architect";
+import { Divider } from "../../components/divider";
 import { Grid } from "../../components/grid";
 import { Region } from "../../components/region";
 import { Axis, Scrollview } from "../../components/scrollview";
@@ -133,12 +134,13 @@ function HomeShowcase(props: IHomeShowcaseProperties)
     {
         if (event.key == `ArrowLeft`)
         { 
-            if (index == props.albums.length - 1) { return; } setIndex( index + 1 ); 
+            if (index == 0) { return; } setIndex( index - 1 ); 
 
         }
         else if ((event.key == `ArrowRight`))
         {
-            if (index == 0) { return; } setIndex( index - 1 ); 
+            if (index == props.albums.length - 1) { return; } setIndex( index + 1 ); 
+
         };
 
     }, [index]); 
@@ -275,39 +277,6 @@ function HomeShowcase(props: IHomeShowcaseProperties)
 
 export { HomePage }
 
-
-// const storage = getStorage();
-// const listRef = ref(storage, 'files/uid');
-
-// function ImageApp()
-// {
-
-//     // This is the array state of items that react will eventually render
-//     // It is set to empty initially because we will have to fetch the data
-//     const [items, setItems] = React.useState([]); 
-
-//     React.useEffect(() => 
-//     {
-//         fetchItemsFromFirebase(); 
-
-//     }, []); 
-
-
-//     const fetchItemsFromFirebase = React.useCallback(async () => 
-//     {
-//         await listAll(listRef)
-//         .then((res) => 
-//         {
-//             cosnt values = res.items.map((item) => item._location); 
-//             setItems(values); 
-//         })
-//         .catch((error) => { console.error(error) });
-
-//     }, []); // <- add "useState" values inside the array if you want the fetch to happen every time it changes
-
-
-
-// }
 
 
 
