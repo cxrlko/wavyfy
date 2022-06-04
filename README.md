@@ -3,7 +3,7 @@
 
 
 <!-- PROJECT LOGO -->
-# Word Scrambler
+# Wavyfy
 <br>
 <br>
 <br>
@@ -78,7 +78,6 @@ npm install babel-core babel-loader babel-preset-env babel-preset-react --save-d
 - [ ] Dynamic Top Page color gradients
 - [ ] Flexible search bar
 - [ ] Mobile Scrollbar aticles
-- [ ] 
 
 
 

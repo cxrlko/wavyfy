@@ -131,8 +131,15 @@ function HomeShowcase(props: IHomeShowcaseProperties)
     // #region Handle Window Paging
     const handleWindowPaging = React.useCallback((event: KeyboardEvent) => 
     {
-        if (event.key == `ArrowLeft`) { if (index == 0) { return; } setIndex( index - 1 ); }
-        else if ((event.key == `ArrowRight`)) { if (index == props.albums.length - 1) { return; } setIndex( index + 1 ); };
+        if (event.key == `ArrowLeft`)
+        { 
+            if (index == props.albums.length - 1) { return; } setIndex( index + 1 ); 
+
+        }
+        else if ((event.key == `ArrowRight`))
+        {
+            if (index == 0) { return; } setIndex( index - 1 ); 
+        };
 
     }, [index]); 
     // #endregion
