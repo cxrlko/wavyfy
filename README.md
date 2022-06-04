@@ -23,6 +23,7 @@
   <h3 align="center">Word Scrambler</h3>
 
   <div align="center">
+    <a target="_blank" href="https://wavyfy.web.app">View Live 🔗🌐 </a> ·
     <a href="https://github.com/ckomondi/wordscrambler/blob/master/LICENSE.txt">Licence</a>
   </div>
 

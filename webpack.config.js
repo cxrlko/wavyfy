@@ -7,6 +7,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = 
 {
     mode: "development",
+    // mode: "production",
     devtool: "eval-source-map",
     entry: 
     {
@@ -14,7 +15,7 @@ module.exports =
     },
     output:
     {
-        path: __dirname + '/public/dist',
+        path: __dirname + '/public',
         filename: '[name].js',
     },
     target: "web",
@@ -55,8 +56,11 @@ module.exports =
     plugins: 
     [
         new HtmlWebpackPlugin({
+            title: "Spotify Clone",
+            filename: "index.html",
+            template: '/src/html/index.html',
             inject: true,
-            template: `/public/index.html`,
+            scriptLoading: "defer",
         }),
     ]
 };
