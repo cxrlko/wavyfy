@@ -276,6 +276,53 @@ function HomeShowcase(props: IHomeShowcaseProperties)
 export { HomePage }
 
 
+// const storage = getStorage();
+// const listRef = ref(storage, 'files/uid');
+
+// function ImageApp()
+// {
+
+//     // This is the array state of items that react will eventually render
+//     // It is set to empty initially because we will have to fetch the data
+//     const [items, setItems] = React.useState([]); 
+
+//     React.useEffect(() => 
+//     {
+//         fetchItemsFromFirebase(); 
+
+//     }, []); 
+
+
+//     const fetchItemsFromFirebase = React.useCallback(async () => 
+//     {
+//         await listAll(listRef)
+//         .then((res) => 
+//         {
+//             cosnt values = res.items.map((item) => item._location); 
+//             setItems(values); 
+//         })
+//         .catch((error) => { console.error(error) });
+
+//     }, []); // <- add "useState" values inside the array if you want the fetch to happen every time it changes
+
+
+
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
