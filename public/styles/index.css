@@ -299,6 +299,40 @@ nav .links > .icon
         opacity: 0%;
     }
 }
+
+
+#home-showcase div.trailer
+{
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between;
+
+    margin: 0.2rem 0px; 
+}
+
+#home-showcase div.trailer > div.pagigation
+{
+    display: flex; 
+    align-items: center; 
+    justify-content: flex-end;
+
+}
+
+
+#home-showcase div.trailer > div.pagigation > div.icon 
+{
+    width: 1.5rem; 
+    height: 1.5rem; ;
+
+    margin-left: 1.5rem;
+}
+
+#home-showcase div.trailer > div.pagigation > div.icon[aria-disabled=true]
+{
+    cursor: not-allowed;
+    pointer-events: none;
+    stroke: var(--tint);
+}
 /* #endregion */
 
 

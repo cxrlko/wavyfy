@@ -5,8 +5,6 @@
 
 
 
-
-import { addListener } from "process";
 import * as React from "react"
 import { useNavigate } from "react-router";
 import { collapseTextChangeRangesAcrossMultipleVersions } from "typescript";
@@ -126,11 +124,15 @@ function HomeShowcase(props: IHomeShowcaseProperties)
     const [index, setIndex] = React.useState <number> (0); 
 
 
+    // #region Pallete
     const pallete = React.useMemo(() => 
-    {
+    {   
+        if (!props.albums[index]) { return; };
+
+        return false; 
 
     }, [index]); 
-
+    // #endregion
 
     // #region Handle Window Paging
     const handleWindowPaging = React.useCallback((event: KeyboardEvent) => 
@@ -259,10 +261,39 @@ function HomeShowcase(props: IHomeShowcaseProperties)
                 <div className="info">
                     <p className="title truncated">{ props.albums[index].title }</p>
 
+                    <div className="trailer">
                     {
                         props.albums[index].artists[0] &&
                         <p className="truncated">{ props.albums[index].artists[0].name } &middot; { props.albums[index].releaseDate.getFullYear() }</p>
                     }
+                    <div className="pagigation">
+                        <div
+                        onClick={ () => 
+                        {
+                            setIndex( index - 1 );
+                        }}
+                        aria-disabled={ index == 0 }
+                        className="icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4.25 12.2743L19.25 12.2743" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M10.2998 18.2987L4.2498 12.2747L10.2998 6.24969" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                        </div>
+
+                        <div
+                        onClick={ () => 
+                        {
+                            setIndex( index + 1 );
+                        }}
+                        aria-disabled={ index == props.albums.length - 1 }
+                        className="icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19.75 11.7257L4.75 11.7257" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M13.7002 5.70131L19.7502 11.7253L13.7002 17.7503" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                        </div>
+                    </div>
+                    </div>
                 </div>
             }
 
