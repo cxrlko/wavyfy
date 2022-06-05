@@ -1,6 +1,5 @@
 
 
-
 <!-- PROJECT LOGO -->
 # Wavyfy
 <br>
@@ -17,7 +16,7 @@
 
 <div align="center">
 
-  <img width="1536" alt="project" src="https://www.awesomescreenshot.com/image/28261685?key=986ac663ea753c288f737fb02923e88e">
+  <img width="1536" alt="project" src="https://awesomescreenshot.s3.amazonaws.com/image/3390961/28261685-4bf6b4ae28b9ad793eab6e84a0682fae.png">
 
   <h3 align="center">A Spotify Clone</h3>
 
