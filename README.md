@@ -20,10 +20,10 @@
 
   <img width="1536" alt="project" src="https://user-images.githubusercontent.com/98195031/170782760-a131ebe1-2b20-4741-b844-eb6150e9854b.png">
 
-  <h3 align="center">Word Scrambler</h3>
+  <h3 align="center">A Spotify Clone</h3>
 
   <div align="center">
-    <a target="_blank" href="https://wavyfy.web.app">View Live &#10823;</a> ·
+    <a target="_blank" href="https://wavyfy.web.app">View Live &#10823;&#10823;</a> ·
     <a href="https://github.com/ckomondi/wordscrambler/blob/master/LICENSE.txt">Licence</a>
   </div>
 
