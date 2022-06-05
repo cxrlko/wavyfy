@@ -57,6 +57,9 @@ npm start
 Developer Dependencies (Not required to run application)
 ```
 npm install react-dom --save
+npm install react-router-dom --save
+
+npm install firebase --save
 
 npm install webpack --save
 npm install webpack-dev-server --save
