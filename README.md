@@ -83,8 +83,8 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 ## Contact
 
-Carl Omondi - [@carlkomondi](https://www.linkedin.com/in/carlkomondi/) - carlkomondi@gmail.com <br>
-Project Link: [Github Repo](https://github.com/ckomondi/wordscrambler)
+Carl Omondi - [@carlkomondi](https://www.linkedin.com/in/carlko/) - carlkomondi@gmail.com <br>
+Project Link: [Github Repo](https://github.com/ckomondi/wavyfy)
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -95,7 +95,7 @@ Project Link: [Github Repo](https://github.com/ckomondi/wordscrambler)
 [license]: https://github.com/ckomondi/template-react-app/blob/master/LICENSE.txt
 
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin]: https://linkedin.com/in/carlkomondi
+[linkedin]: https://www.linkedin.com/in/carlko/
 
 
 
