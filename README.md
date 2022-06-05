@@ -4,17 +4,10 @@
 <!-- PROJECT LOGO -->
 # Wavyfy
 <br>
-<br>
-<br>
-
 [![MIT License][license-shield]][license]
 [![LinkedIn][linkedin-shield]][linkedin]
 
 <br>
-<br>
-<br>
-
-
 <div align="center">
 
   <img width="1536" alt="project" src="https://user-images.githubusercontent.com/98195031/172065375-cad90296-57a0-41af-9beb-f6a9ea199ace.png">
