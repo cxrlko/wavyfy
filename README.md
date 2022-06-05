@@ -38,6 +38,7 @@ Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam dolor fugiat commo
 
 * [Spotify RESTful API](https://developer.spotify.com/documentation/web-api) (Music Data)
 * [React.js](https://reactjs.org/) (FrontEnd Framework)
+* [Firebase](https://firebase.google.com/) (Web Hosting)
 * [TypeScript](https://www.typescriptlang.org/) (Adding JavaScript Casing)
 * [WebPack](https://webpack.js.org/) (App Bundler)
 
