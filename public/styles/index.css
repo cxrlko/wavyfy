@@ -321,6 +321,8 @@ nav .links > .icon
 
 #home-showcase div.trailer > div.pagigation > div.icon 
 {
+    cursor: pointer;
+
     width: 1.5rem; 
     height: 1.5rem; ;
 
@@ -513,14 +515,13 @@ nav .links > .icon
 
 /*  ^ Artist */
 /* #region Artist Albums */
-#artist-albums > .content 
+
+
+#top-artist-songs > .content 
 {
-    max-height: 11.5rem;
+    max-height: 17rem;
     overflow-y: hidden;
-
-    margin-bottom: 16vh;
 }
-
 /* #endregion */
 
 /* #region Artist Showcase */
@@ -566,12 +567,12 @@ nav .links > .icon
 
 
 /* ^ Search */
-#search-albums
+#search-albums, #artist-albums
 {
     margin-bottom: 16vh;
 }
 
-#search-albums > .content, #search-artists > .content, #top-tracks > .content, #top-artists > .content, #top-albums > .content
+#search-albums > .content, #search-artists > .content, #artist-albums > .content, #top-tracks > .content, #top-artists > .content, #top-albums > .content
 {
     max-height: 11.5rem;
     overflow: hidden;
@@ -579,7 +580,7 @@ nav .links > .icon
 
 @media screen and (max-width: 704px) 
 {
-    #search-albums > .content, #search-artists > .content, #top-tracks > .content, #top-artists > .content, #top-albums > .content
+    #search-albums > .content, #search-artists > .content, #artist-albums > .content, #top-tracks > .content, #top-artists > .content, #top-albums > .content
     {
         max-height: 30rem;
     }

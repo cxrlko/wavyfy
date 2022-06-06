@@ -18,6 +18,7 @@ class Track
     duration: Duration; 
     trackIndex: number; 
     
+    albumID: string | undefined; 
     coverURL: string | undefined; 
     artists: MVArtist[] = []; 
 
@@ -33,6 +34,7 @@ class Track
         this.duration = new Duration(data.duration_ms);
         this.trackIndex = data.track_number; 
         
+        this.albumID = (data.album) ? (data.album.id) : undefined;
         this.coverURL = (data.album) ? (data.album.images as any[])[0].url : undefined;
         this.artists = (data.artists as any[]).map((artistData) => new MVArtist(artistData)); 
     }

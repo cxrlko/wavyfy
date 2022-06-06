@@ -71,20 +71,21 @@ function HomePage(props: IHomePageProperties)
     <>
         <HomeShowcase albums={ newReleases.slice(0, 10) } />
 
+        <Region articleID="top-tracks" header="Top Tracks" content=
+        {
+            <Grid gap={{ x: 1, y: 2 }} minItemWidth={ 340 } contentItems=
+            {
+                (topTracks.map((track, trackIndex) => <TrackCard key={ trackIndex } track={ track } />))
+            }/>
+        }/>
+
+        
+
         <Region articleID="top-artists" header="Top Artists" content=
         {
             <Grid gap={{ x: 1, y: 1 }} minItemWidth={ 280 } contentItems=
             {
                 (topArtists.map((artist, artistIndex) => <ArtistCard key={ artistIndex } artist={ artist } />))
-            }/>
-        }/>
-
-
-        <Region articleID="top-tracks" header="Top Tracks" content=
-        {
-            <Grid gap={{ x: 1, y: 2 }} minItemWidth={ 280 } contentItems=
-            {
-                (topTracks.map((track, trackIndex) => <TrackCard key={ trackIndex } track={ track } />))
             }/>
         }/>
 

@@ -30,8 +30,14 @@ function TrackCard(props: ITrackCardProperties)
 
     return (
 
-    <div className="track-card">
+    // <div className="track-card">
 
+    //     
+    // </div>
+
+    <Link to={ `/album/${ props.track.albumID }` } children=
+    {
+        <>
         <div className="cover">
             <img src={ props.track.coverURL } alt={ props.track.title } />
         </div>
@@ -49,7 +55,8 @@ function TrackCard(props: ITrackCardProperties)
         <div className="metadata">
             <p>{ props.track.duration.digitalTimeFormat() }</p>
         </div>
-    </div>
+        </>
+    }/>
 
 
 

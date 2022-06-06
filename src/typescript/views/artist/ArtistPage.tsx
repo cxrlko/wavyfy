@@ -152,7 +152,7 @@ function ArtistTopTracks(props: IArtistTopTracks)
 
     return (
 
-    <Region articleID="top-tracks" header="Top Songs" content=
+    <Region articleID="top-artist-songs" header="Top Songs" content=
     {
         <>
         { 
