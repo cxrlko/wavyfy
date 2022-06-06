@@ -23,6 +23,19 @@
         padding: 0px 1.5rem; 
     }
 }
+
+#shadow 
+{
+    position: fixed;
+    top: 0px; 
+    left: 0px; 
+    right: 0px; ;
+
+    width: 100vw; 
+    height: 48vh;
+
+    z-index: -20; 
+}
 /* #endregion */
 
 /* #region NavBar */
@@ -39,7 +52,7 @@ nav
     justify-content: space-between;
 
     padding: 01rem 2rem; 
-    background-color: var(--background);
+    /* background-color: var(--background); */
 
     z-index: 50; 
 }

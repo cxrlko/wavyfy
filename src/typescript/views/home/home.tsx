@@ -19,6 +19,9 @@ import { Track } from "../../models/track";
 import { AlbumCard } from "../cards/albumCard";
 import { ArtistCard } from "../cards/artistCard";
 import { TrackCard } from "../cards/trackCard";
+import analyse from 'rgbaster'
+import { createPortal, render } from "react-dom";
+import { Shadow } from "../app/shadow";
 
 
 
@@ -31,6 +34,8 @@ interface IHomePageProperties
 
 function HomePage(props: IHomePageProperties)
 {
+
+    const [index, setIndex] = React.useState <number> (0); 
 
     const [newReleases, setNewReleases] = React.useState<Album[]>([]); 
     const [topArtists, setTopArtists] = React.useState <Artist[]> ([]); 
@@ -45,6 +50,17 @@ function HomePage(props: IHomePageProperties)
     }, []); 
 
 
+    // #region Dominant Color
+    const _ = React.useMemo(() => 
+    {
+        if (newReleases.length <= 0) { return; }
+    
+
+
+    }, [index, newReleases]); 
+    // #endregion
+
+
     // #region Setup Page 
     /** 
      * 
@@ -53,7 +69,9 @@ function HomePage(props: IHomePageProperties)
     {
 
         setTopArtists( await Architect.network.fetchTopArtists() ); 
-        setNewReleases( await Architect.network.fetchNewReleases() ); 
+
+        const newReleases = await Architect.network.fetchNewReleases();
+        setNewReleases( newReleases.slice(0, 10) ); 
 
         setTopTracks( await Architect.network.fetchTopTracks() ); 
 
@@ -64,12 +82,13 @@ function HomePage(props: IHomePageProperties)
     // #endregion
 
     // #region Component 
+
     return (
 
     <Scrollview id="Home" axis={ Axis.vertical } classes="sheet" content=
     {
     <>
-        <HomeShowcase albums={ newReleases.slice(0, 10) } />
+        <HomeShowcase focusIndex={ index } setFocusIndex={ setIndex } albums={ newReleases } />
 
         <Region articleID="top-tracks" header="Top Tracks" content=
         {
@@ -97,6 +116,9 @@ function HomePage(props: IHomePageProperties)
                 (topAlbums.map((release, index) => <AlbumCard key={ index } album={ release } />))
             }/>
         }/>
+
+        <Shadow />
+
     </>
     }/>
 
@@ -110,10 +132,15 @@ function HomePage(props: IHomePageProperties)
 
 
 
+
+
+
 // #region Home Showcase 
 interface IHomeShowcaseProperties 
 {
     albums: Album[]; 
+    focusIndex: number; 
+    setFocusIndex : React.Dispatch<React.SetStateAction<number>>;
 }
 
 let previousIndex : number = -1; 
@@ -122,42 +149,31 @@ function HomeShowcase(props: IHomeShowcaseProperties)
 {
 
     const navigate = useNavigate();
-    const [index, setIndex] = React.useState <number> (0); 
 
-
-    // #region Pallete
-    const pallete = React.useMemo(() => 
-    {   
-        if (!props.albums[index]) { return; };
-
-        return false; 
-
-    }, [index]); 
-    // #endregion
 
     // #region Handle Window Paging
     const handleWindowPaging = React.useCallback((event: KeyboardEvent) => 
     {
         if (event.key == `ArrowLeft`)
         { 
-            if (index == 0) { return; } setIndex( index - 1 ); 
+            if (props.focusIndex == 0) { return; } props.setFocusIndex( props.focusIndex - 1 ); 
 
         }
         else if ((event.key == `ArrowRight`))
         {
-            if (index == props.albums.length - 1) { return; } setIndex( index + 1 ); 
+            if (props.focusIndex == props.albums.length - 1) { return; } props.setFocusIndex( props.focusIndex + 1 ); 
 
         };
 
-    }, [index]); 
+    }, [props.focusIndex]); 
     // #endregion
 
     // #region Navigate to current album
     const navigateToCurrentAlbum = React.useCallback(() => 
     {
-        navigate(`/album/${ props.albums[index].id }`); 
+        navigate(`/album/${ props.albums[props.focusIndex].id }`); 
 
-    }, [index, props.albums]); 
+    }, [props.focusIndex, props.albums]); 
     // #endregion
 
     React.useEffect(() => 
@@ -169,7 +185,7 @@ function HomeShowcase(props: IHomeShowcaseProperties)
             window.removeEventListener('keydown', handleWindowPaging);
         }
         
-    }, [index]); 
+    }, [props.focusIndex]); 
 
 
     // #region Scroll variables
@@ -185,20 +201,20 @@ function HomeShowcase(props: IHomeShowcaseProperties)
     const getImageClassList = React.useCallback((albumIndex: number) => 
     {
         const list : string[] = []; 
-        if (albumIndex == index) 
+        if (albumIndex == props.focusIndex) 
         {
-            list.push((previousIndex <= index) ? `active` : `recover`); 
+            list.push((previousIndex <= props.focusIndex) ? `active` : `recover`); 
 
             previousIndex = albumIndex; 
 
         }; 
-        if (albumIndex < index) { list.push(`dismissed`) }
-        else if (albumIndex > index + 2) { list.push(`lost`) };
+        if (albumIndex < props.focusIndex) { list.push(`dismissed`) }
+        else if (albumIndex > props.focusIndex + 2) { list.push(`lost`) };
 
 
         return list.join(` `); 
 
-    }, [index]); 
+    }, [props.focusIndex]); 
     // #endregion
 
     // #region Component
@@ -225,14 +241,14 @@ function HomeShowcase(props: IHomeShowcaseProperties)
             //Scroll Left
             if ((velocity > scrollThreshhold))
             {
-                if (index == 0) { return; }
-                setIndex( index - 1 ); 
+                if (props.focusIndex == 0) { return; }
+                props.setFocusIndex( props.focusIndex - 1 ); 
             }
             // Scroll Right
             else if ((velocity < -scrollThreshhold))
             {
-                if (index == props.albums.length - 1) { return; }
-                setIndex( index + 1 ); 
+                if (props.focusIndex == props.albums.length - 1) { return; }
+                props.setFocusIndex( props.focusIndex + 1 ); 
             }
 
         }}
@@ -258,22 +274,22 @@ function HomeShowcase(props: IHomeShowcaseProperties)
             </div>
 
             {
-                props.albums[index] &&
+                props.albums[props.focusIndex] &&
                 <div className="info">
-                    <p className="title truncated">{ props.albums[index].title }</p>
+                    <p className="title truncated">{ props.albums[props.focusIndex].title }</p>
 
                     <div className="trailer">
                     {
-                        props.albums[index].artists[0] &&
-                        <p className="truncated">{ props.albums[index].artists[0].name } &middot; { props.albums[index].releaseDate.getFullYear() }</p>
+                        props.albums[props.focusIndex].artists[0] &&
+                        <p className="truncated">{ props.albums[props.focusIndex].artists[0].name } &middot; { props.albums[props.focusIndex].releaseDate.getFullYear() }</p>
                     }
                     <div className="pagigation">
                         <div
                         onClick={ () => 
                         {
-                            setIndex( index - 1 );
+                            props.setFocusIndex( props.focusIndex - 1 );
                         }}
-                        aria-disabled={ index == 0 }
+                        aria-disabled={ props.focusIndex == 0 }
                         className="icon">
                         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M4.25 12.2743L19.25 12.2743" strokeLinecap="round" strokeLinejoin="round"/>
@@ -284,9 +300,9 @@ function HomeShowcase(props: IHomeShowcaseProperties)
                         <div
                         onClick={ () => 
                         {
-                            setIndex( index + 1 );
+                            props.setFocusIndex( props.focusIndex + 1 );
                         }}
-                        aria-disabled={ index == props.albums.length - 1 }
+                        aria-disabled={ props.focusIndex == props.albums.length - 1 }
                         className="icon">
                         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M19.75 11.7257L4.75 11.7257" strokeLinecap="round" strokeLinejoin="round"/>
@@ -313,10 +329,6 @@ function HomeShowcase(props: IHomeShowcaseProperties)
 
 
 export { HomePage }
-
-
-
-
 
 
 

@@ -16,6 +16,7 @@ import { Album } from "../../models/album";
 import { Artist, MVArtist } from "../../models/artist";
 import { Track } from "../../models/track";
 import { getIDfromURL } from "../../utilities/getId";
+import { Shadow } from "../app/shadow";
 import { AlbumCard } from "../cards/albumCard";
 import { TrackCard } from "../cards/trackCard";
 
@@ -64,6 +65,8 @@ function ArtistPage(props: IArtistPageProperties)
         { artist && <ArtistShowcase artist={ artist } /> }
         <ArtistTopTracks songs={ artistTopTracks } />
         <ArtistAlbums albums={ artistAlbums } />
+
+        <Shadow color={ chroma('#D4F880') } />
     
     </>
     } />

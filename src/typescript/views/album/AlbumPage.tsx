@@ -10,6 +10,7 @@ import { Axis, Scrollview } from "../../components/scrollview"
 import { Album } from "../../models/album";
 import { Track } from "../../models/track";
 import { getIDfromURL } from "../../utilities/getId";
+import { Shadow } from "../app/shadow";
 
 
 interface IAlbumPageProperties
@@ -76,6 +77,8 @@ function AlbumPage(props: IAlbumPageProperties)
             }
             </>
         </div>
+
+        <Shadow />
     </>
     }/>
 
