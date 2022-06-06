@@ -1,29 +1,23 @@
 
 
 
-
 <!-- PROJECT LOGO -->
 # Wavyfy
-<br>
-<br>
 <br>
 
 [![MIT License][license-shield]][license]
 [![LinkedIn][linkedin-shield]][linkedin]
 
 <br>
-<br>
-<br>
-
 
 <div align="center">
 
-  <img width="1536" alt="project" src="https://user-images.githubusercontent.com/98195031/170782760-a131ebe1-2b20-4741-b844-eb6150e9854b.png">
+  <img width="1536" alt="project" src="https://user-images.githubusercontent.com/98195031/172065375-cad90296-57a0-41af-9beb-f6a9ea199ace.png">
 
-  <h3 align="center">Word Scrambler</h3>
+  <h3 align="center">A Spotify Clone</h3>
 
   <div align="center">
-    <a target="_blank" href="https://wavyfy.web.app">View Live </a> ·
+    <a target="_blank" href="https://wavyfy.web.app">View Live &#8599;</a> ·
     <a href="https://github.com/ckomondi/wordscrambler/blob/master/LICENSE.txt">Licence</a>
   </div>
 
@@ -39,6 +33,7 @@ Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam dolor fugiat commo
 
 * [Spotify RESTful API](https://developer.spotify.com/documentation/web-api) (Music Data)
 * [React.js](https://reactjs.org/) (FrontEnd Framework)
+* [Firebase](https://firebase.google.com/) (Web Hosting)
 * [TypeScript](https://www.typescriptlang.org/) (Adding JavaScript Casing)
 * [WebPack](https://webpack.js.org/) (App Bundler)
 
@@ -62,6 +57,9 @@ npm start
 Developer Dependencies (Not required to run application)
 ```
 npm install react-dom --save
+npm install react-router-dom --save
+
+npm install firebase --save
 
 npm install webpack --save
 npm install webpack-dev-server --save
@@ -88,8 +86,8 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 ## Contact
 
-Carl Omondi - [@carlkomondi](https://www.linkedin.com/in/carlkomondi/) - carlkomondi@gmail.com <br>
-Project Link: [Github Repo](https://github.com/ckomondi/wordscrambler)
+Carl Omondi - [@carlkomondi](https://www.linkedin.com/in/carlko/) - carlkomondi@gmail.com <br>
+Project Link: [Github Repo](https://github.com/ckomondi/wavyfy)
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -100,7 +98,7 @@ Project Link: [Github Repo](https://github.com/ckomondi/wordscrambler)
 [license]: https://github.com/ckomondi/template-react-app/blob/master/LICENSE.txt
 
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin]: https://linkedin.com/in/carlkomondi
+[linkedin]: https://www.linkedin.com/in/carlko/
 
 
 
