@@ -19,8 +19,6 @@ import { Track } from "../../models/track";
 import { AlbumCard } from "../cards/albumCard";
 import { ArtistCard } from "../cards/artistCard";
 import { TrackCard } from "../cards/trackCard";
-import analyse from 'rgbaster'
-import { createPortal, render } from "react-dom";
 import { Shadow } from "../app/shadow";
 
 
@@ -36,6 +34,7 @@ function HomePage(props: IHomePageProperties)
 {
 
     const [index, setIndex] = React.useState <number> (0); 
+    const [hue, setHue] = React.useState<number>(42); 
 
     const [newReleases, setNewReleases] = React.useState<Album[]>([]); 
     const [topArtists, setTopArtists] = React.useState <Artist[]> ([]); 
@@ -51,10 +50,10 @@ function HomePage(props: IHomePageProperties)
 
 
     // #region Dominant Color
-    const _ = React.useMemo(() => 
+    React.useEffect(() => 
     {
         if (newReleases.length <= 0) { return; }
-    
+        
 
 
     }, [index, newReleases]); 
@@ -117,7 +116,10 @@ function HomePage(props: IHomePageProperties)
             }/>
         }/>
 
-        <Shadow />
+        {
+            hue &&
+            <Shadow hue={ hue } />
+        }
 
     </>
     }/>
