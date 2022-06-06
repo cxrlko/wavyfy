@@ -20,7 +20,7 @@
 {
     #root div.scrollview.sheet > div.viewport > div.content 
     {
-        padding: 0px 1rem; 
+        padding: 0px 1.5rem; 
     }
 }
 /* #endregion */
@@ -40,6 +40,16 @@ nav
 
     padding: 01rem 2rem; 
     background-color: var(--background);
+
+    z-index: 50; 
+}
+
+@media screen and (max-width: 500px)
+{
+    nav
+    {
+        padding: 0.5rem 1.2rem;
+    }    
 }
 
 nav > div.navigation, div.navigation > div.directions
@@ -367,6 +377,8 @@ nav .links > .icon
     width: 100%; 
     height: 64vmin;
     min-height: 28rem;
+
+    margin: 3rem 0px; 
 }
 
 #albumpage #showcase > div 

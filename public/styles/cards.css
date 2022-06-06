@@ -3,23 +3,24 @@
 
 
 /* #region Track Card */
-a.track-card
+div.track-card
 {
     display: flex; 
     align-items: flex-start; 
     justify-content: space-between;
 
+    cursor: pointer;
     color: var(--foreground); 
 
     margin: 1rem 0px; 
 }
 
-a.track-card > div 
+div.track-card > div 
 {
     flex: 1 1 100%; 
 }
 
-a.track-card > div.cover 
+div.track-card > div.cover 
 {
     min-width: 3rem; 
     min-height: 3rem;
@@ -29,13 +30,13 @@ a.track-card > div.cover
 }
 
 
-a.track-card > div.info 
+div.track-card > div.info 
 {
     max-width: calc(100% - 7.5rem);
     margin: 0px 1rem; 
 }
 
-a.track-card > div.info > a
+div.track-card > div.info > a
 {
     display: flex; 
     align-items: center; 
@@ -44,7 +45,7 @@ a.track-card > div.info > a
     min-width: 2rem;
     max-width: min-content;
 }
-a.track-card > div.info > a > p
+div.track-card > div.info > a > p
 {
     max-width: min-content; 
     color: var(--tint);
@@ -52,7 +53,7 @@ a.track-card > div.info > a > p
 
 
 
-a.track-card > div.metadata 
+div.track-card > div.metadata 
 {
     min-width: 2.5rem;
     max-width: 2.5rem;

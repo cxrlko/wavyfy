@@ -73,13 +73,13 @@ function HomePage(props: IHomePageProperties)
 
         <Region articleID="top-tracks" header="Top Tracks" content=
         {
-            <Grid gap={{ x: 1, y: 2 }} minItemWidth={ 340 } contentItems=
+            <Grid gap={{ x: 1, y: 2 }} minItemWidth={ 332 } contentItems=
             {
                 (topTracks.map((track, trackIndex) => <TrackCard key={ trackIndex } track={ track } />))
             }/>
         }/>
 
-        
+
 
         <Region articleID="top-artists" header="Top Artists" content=
         {
