@@ -15,16 +15,31 @@
 {
     padding: 0px 8vw; 
 }
+
+@media screen and (max-width: 500px)
+{
+    #root div.scrollview.sheet > div.viewport > div.content 
+    {
+        padding: 0px 1rem; 
+    }
+}
 /* #endregion */
 
 /* #region NavBar */
 nav 
 {
+    position: fixed; 
+    top: 0px;
+    left: 0px; 
+    right: 0px; ;
+    width: 100%; ;
+
     display: flex; 
     align-items: center; 
     justify-content: space-between;
 
-    margin: 0.75rem 2rem; 
+    padding: 01rem 2rem; 
+    background-color: var(--background);
 }
 
 nav > div.navigation, div.navigation > div.directions

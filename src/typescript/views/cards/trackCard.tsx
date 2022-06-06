@@ -9,7 +9,7 @@
 
 import { trace } from "console";
 import * as React from "react"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Track } from "../../models/track";
 
 interface ITrackCardProperties 
@@ -21,6 +21,8 @@ interface ITrackCardProperties
 
 function TrackCard(props: ITrackCardProperties)
 {
+    
+    const navigate = useNavigate(); 
 
     React.useEffect(() => 
     {
@@ -30,14 +32,14 @@ function TrackCard(props: ITrackCardProperties)
 
     return (
 
-    // <div className="track-card">
 
-    //     
-    // </div>
-
-    <Link to={ `/album/${ props.track.albumID }` } children=
+    <div
+    onClick={ () => 
     {
-        <>
+        navigate(`/album/${ props.track.albumID }`);
+    }}
+    className="track-card">
+
         <div className="cover">
             <img src={ props.track.coverURL } alt={ props.track.title } />
         </div>
@@ -55,9 +57,8 @@ function TrackCard(props: ITrackCardProperties)
         <div className="metadata">
             <p>{ props.track.duration.digitalTimeFormat() }</p>
         </div>
-        </>
-    }/>
 
+    </div>
 
 
     )
