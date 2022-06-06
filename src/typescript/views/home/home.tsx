@@ -20,6 +20,8 @@ import { AlbumCard } from "../cards/albumCard";
 import { ArtistCard } from "../cards/artistCard";
 import { TrackCard } from "../cards/trackCard";
 import { Shadow } from "../app/shadow";
+import Vibrant from "node-vibrant"
+
 
 
 
@@ -54,6 +56,14 @@ function HomePage(props: IHomePageProperties)
     {
         if (newReleases.length <= 0) { return; }
         
+        const Image = Vibrant.from(`${ newReleases[index].coverURL }`);
+        Image.getPalette()
+        .then((responce) => { console.log(responce) })
+        .catch((error) => { console.error(`Error getting pallete: ${ error }`) })
+
+        // .getPalette()
+        // .then((palette) => console.log(palette))
+        // .catch((error) => console.error(`Encounterd an error${ error }`)); 
 
 
     }, [index, newReleases]); 

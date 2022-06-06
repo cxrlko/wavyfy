@@ -34,6 +34,7 @@ Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam dolor fugiat commo
 * [Spotify RESTful API](https://developer.spotify.com/documentation/web-api) (Music Data)
 * [React.js](https://reactjs.org/) (FrontEnd Framework)
 * [Firebase](https://firebase.google.com/) (Web Hosting)
+* [Vibrant](https://jariz.github.io/vibrant.js/) (Image Color Mapping)
 * [TypeScript](https://www.typescriptlang.org/) (Adding JavaScript Casing)
 * [WebPack](https://webpack.js.org/) (App Bundler)
 
@@ -46,6 +47,7 @@ Install Dependencies
 npm install typescript
 npm install react --save
 npm install webpack-dev-server
+npm install node-vibrant@3.1.6 --save
 ```
 
 Run Commands
