@@ -24,13 +24,6 @@ function Shadow(props: IShadowProperties)
     {
         const safariThemeTag = document.getElementById(`safari-theme`);
 
-
-        if (!props.hue)
-        {
-            safariThemeTag.setAttribute(`content`, `#FAFAFC`);
-            return; 
-        }
-
         safariThemeTag.setAttribute(`content`, `hsl(${ clamp(props.hue, 0, 360) }, 100%, 80%)`)
 
     }, [ props.hue ]); 
