@@ -4,7 +4,7 @@
 
 
 
-export { Color, HSL, RGB, HEX };
+export { Color };
 
 // #region Color 
 // * Format
@@ -67,10 +67,10 @@ class Color
     constructor(_code: string)
     {
         this.HEX = new HEX(_code); 
-        this.RGB = Color.hexToRGB(this.HEX.code); 
+        this.RGB = this.hexToRGB(this.HEX.code); 
     }
 
-    static hexToRGB(hex: string)
+    hexToRGB(hex: string)
     {
         let r = `0`;
         let g = `0`;
@@ -96,7 +96,7 @@ class Color
         return new RGB(parseInt(r), parseInt(g), parseInt(b));
     }
 
-    static rgbToHSL(_rgb: RGB)
+    rgbToHSL(_rgb: RGB)
     {
         // Make r, g, and b fractions of 1
         let r = _rgb.red /= 255;
