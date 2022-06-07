@@ -28,12 +28,10 @@ function Shadow(props: IShadowProperties)
 
     }, [ props.hue ]); 
 
-    return ReactDOM.createPortal(
+    return (
         <div id="shadow" style={{ background: `linear-gradient(180deg, hsl(${ clamp(props.hue, 0, 360) }, 100%, 80%) 0%, transparent 100%)` }}>
 
-        </div>, 
-
-        rootElement
+        </div>
     )
 }
 // #endregion

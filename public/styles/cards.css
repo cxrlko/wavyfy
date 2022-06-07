@@ -155,7 +155,7 @@ a.album-card > div.content > p.name
 
 .artist-card > div.info  > p.small 
 {
-    color: var(--gray); 
+    color: var(--tint); 
 }
 /* #endregion */
 

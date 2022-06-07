@@ -126,7 +126,7 @@ function AlbumPageHeader(props: IAlbumPageHeaderProperties)
             <h1 className="truncated">{ props.album.title }</h1>
             <div className="mtdata">
                 <Link to={ `/artist/${ props.album.artists[0].id }` } children={ <p className="label">{ props.album.artists[0].name }</p> } />
-                <p>&nbsp;&middot;&nbsp;Album&nbsp;&middot;&nbsp;{ props.album.releaseDate.getFullYear() }</p>
+                <p>&nbsp;&middot;&nbsp;{ (props.album.trackCount == 1) ? `Single` : `Album` }&nbsp;&middot;&nbsp;{ props.album.releaseDate.getFullYear() }</p>
             </div>
         </div>
 
@@ -166,7 +166,7 @@ function AlbumPageMetadata(props: IAlbumPageMetadata)
         <div className="metadata">
             <p>{ props.album.popularity } Million plays</p>
             <Divider />
-            <p>{ props.album.trackCount } songs</p>
+            <p>{ `${ props.album.trackCount } song${ (props.album.trackCount > 1) ? `s` : `` }` }</p>
         </div>
     )
 

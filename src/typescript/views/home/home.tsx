@@ -272,7 +272,9 @@ function HomeShowcase(props: IHomeShowcaseProperties)
 
         }}
         id="home-showcase">
-        
+            
+            <p className="title">New Releases</p>
+
             <div
                 onClick={ () =>
                 {

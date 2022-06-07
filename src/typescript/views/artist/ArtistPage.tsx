@@ -44,6 +44,11 @@ function ArtistPage(props: IArtistPageProperties)
         const artistID
         = getIDfromURL(window.location.pathname); 
         // = `4q3ewBCX7sLwd24euuV69X`;
+        // = `7MhMgCo0Bl0Kukl93PZbYS`;
+        // = `3B9O5mYYw89fFXkwKh7jCS`;
+        // = `6OBGbSaBUvQtk9wpQfDbOE`;
+        // = `4q3ewBCX7sLwd24euuV69X`;
+        // = `4q3ewBCX7sLwd24euuV69X`;
         
         setupArtistPage(artistID); 
 
@@ -116,10 +121,10 @@ function ArtistShowcase(props: IArtistShowcaseProperties)
     return (
 
         <div id="artist-showcase">
-            <h1>{ props.artist.name }</h1>
             <img src={ props.artist.coverURL } alt={ props.artist.name } />
-            <h1 className="top">{ props.artist.name }</h1>
         </div>
+
+        // .split(` `).slice(0, 2).join(` `)
 
 
     )
