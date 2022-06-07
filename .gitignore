@@ -7,8 +7,8 @@
 /assets
 /public/dist
 /src/javascript
-package-lock.json
-
+/package-lock.json
+/.firebase
 
 
 
