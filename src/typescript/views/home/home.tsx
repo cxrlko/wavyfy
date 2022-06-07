@@ -21,6 +21,7 @@ import { ArtistCard } from "../cards/artistCard";
 import { TrackCard } from "../cards/trackCard";
 import { Shadow } from "../app/shadow";
 import Vibrant from "node-vibrant"
+import { Color, RGB } from "../../core/color";
 
 
 
@@ -55,16 +56,22 @@ function HomePage(props: IHomePageProperties)
     React.useEffect(() => 
     {
         if (newReleases.length <= 0) { return; }
-        
-        const Image = Vibrant.from(`${ newReleases[index].coverURL }`);
-        Image.getPalette()
-        .then((responce) => { console.log(responce) })
-        .catch((error) => { console.error(`Error getting pallete: ${ error }`) })
 
-        // .getPalette()
-        // .then((palette) => console.log(palette))
-        // .catch((error) => console.error(`Encounterd an error${ error }`)); 
 
+        Vibrant.from(`${ newReleases[index].coverURL }`)
+        .getPalette()
+        .then((responce) => 
+        {
+            const vibrant = responce.Vibrant; 
+            if (!vibrant) { return; }
+
+
+            const color = Color.rgbToHSL(new RGB(vibrant.r, vibrant.g, vibrant.b));
+
+            setHue(color.hue); 
+
+        })
+        .catch((error) => { console.log(`Error with vibrant js: ${ error }`) }); 
 
     }, [index, newReleases]); 
     // #endregion
@@ -127,7 +134,7 @@ function HomePage(props: IHomePageProperties)
         }/>
 
         {
-            hue &&
+            (hue != undefined) &&
             <Shadow hue={ hue } />
         }
 

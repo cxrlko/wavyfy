@@ -5,6 +5,7 @@
 
 
 
+import Vibrant from "node-vibrant";
 import * as React from "react"
 import { Architect } from "../../admin/architect";
 import { Chip } from "../../components/chip";
@@ -12,6 +13,7 @@ import { Divider } from "../../components/divider";
 import { Grid } from "../../components/grid";
 import { Region } from "../../components/region";
 import { Axis, Scrollview } from "../../components/scrollview";
+import { Color, RGB } from "../../core/color";
 import { Album } from "../../models/album";
 import { Artist, MVArtist } from "../../models/artist";
 import { Track } from "../../models/track";
@@ -28,6 +30,8 @@ interface IArtistPageProperties
 
 function ArtistPage(props: IArtistPageProperties)
 {
+
+    const [artistHue, setArtistHue] = React.useState(undefined); 
 
     const [artist, setArtist] = React.useState<Artist>( undefined ); 
     const [artistAlbums, setArtistAlbums] = React.useState<Album[]>( [] ); 
@@ -49,10 +53,30 @@ function ArtistPage(props: IArtistPageProperties)
     // #region Setup Page
     const setupArtistPage = React.useCallback( async (id: string) => 
     {
-        setArtist( await Architect.network.fetchArtist(id) ); 
+        const artist = await Architect.network.fetchArtist(id);
+
+        if (!artist.coverURL) { return; }
+
+        Vibrant.from(`${ artist.coverURL! }`)
+        .getPalette()
+        .then((responce) => 
+        {
+            const vibrant = responce.Vibrant; 
+            if (!vibrant) { return; }
+
+
+            const color = Color.rgbToHSL(new RGB(vibrant.r, vibrant.g, vibrant.b));
+            setArtistHue(color.hue); 
+
+        })
+        .catch((error) => { console.log(`Error with vibrant js: ${ error }`) }); 
+
+
+        setArtist( artist ); 
         setArtistAlbums( await Architect.network.fetchArtistAlbums(id) );
         setArtistTopTracks( await Architect.network.fetchArtistTopTracks(id) );
 
+        
     }, []); 
     // #endregion
 
@@ -66,7 +90,11 @@ function ArtistPage(props: IArtistPageProperties)
         <ArtistTopTracks songs={ artistTopTracks } />
         <ArtistAlbums albums={ artistAlbums } />
 
-        <Shadow color={ chroma('#D4F880') } />
+        {
+            (artistHue != undefined) &&
+            <Shadow hue={ artistHue } />
+        }
+
     
     </>
     } />

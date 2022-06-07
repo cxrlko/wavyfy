@@ -2,11 +2,13 @@
 
 
 
+import Vibrant from "node-vibrant";
 import * as React from "react"
 import { Link, NavLink } from "react-router-dom";
 import { Architect } from "../../admin/architect";
 import { Divider } from "../../components/divider";
 import { Axis, Scrollview } from "../../components/scrollview"
+import { Color, RGB } from "../../core/color";
 import { Album } from "../../models/album";
 import { Track } from "../../models/track";
 import { getIDfromURL } from "../../utilities/getId";
@@ -21,6 +23,8 @@ interface IAlbumPageProperties
 
 function AlbumPage(props: IAlbumPageProperties)
 {
+    const [albumHue, setAlbumHue] = React.useState<number>(undefined); 
+
     const [album, setAlbum] = React.useState<Album>( undefined );
     const [songs, setSongs] = React.useState<Track[]>([]);
     
@@ -40,10 +44,27 @@ function AlbumPage(props: IAlbumPageProperties)
     const setupPage = React.useCallback( async (id: string) => 
     {
         const item = await Architect.network.fetchAlbum(id);
+
+
+        Vibrant.from(`${ item.coverURL }`)
+        .getPalette()
+        .then((responce) => 
+        {
+            const vibrant = responce.Vibrant; 
+            if (!vibrant) { return; }
+
+
+            const color = Color.rgbToHSL(new RGB(vibrant.r, vibrant.g, vibrant.b));
+            setAlbumHue(color.hue); 
+
+        })
+        .catch((error) => { console.log(`Error with vibrant js: ${ error }`) }); 
+
         setAlbum(item); 
 
         const songs = await Architect.network.fetchAlbumTracks(id); 
         setSongs(songs); 
+
  
     }, []); 
     // #endregion
@@ -73,12 +94,16 @@ function AlbumPage(props: IAlbumPageProperties)
 
             <>
             {
-                (songs.map((song) => <AlbumTrack key={ song.trackIndex } item={ song } />))
+                (songs.map((song, songIndex) => <AlbumTrack key={ songIndex } item={ song } />))
             }
             </>
         </div>
 
-        <Shadow />
+        {
+            (albumHue != undefined) &&
+            <Shadow hue={ albumHue } />
+        }
+
     </>
     }/>
 
