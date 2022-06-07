@@ -73,12 +73,15 @@ npm install babel-core babel-loader babel-preset-env babel-preset-react --save-d
 
 ## Roadmap
 
-- [x] Home Stash Albums
-- [x] Album Page
-- [x] Fixed Scrolling
-- [ ] Dynamic Top Page color gradients
-- [ ] Flexible search bar
-- [ ] Mobile Scrollbar aticles
+- [x] Spotify API Authentication Pipeline
+- [x] Region Mapping for Artists, Albums, and Tracks
+- [x] Image Stash on Home Page
+- [x] Stash Image Scrolling
+- [x] Dynamic Color Gradients
+- [ ] Update Artist Showcase Region
+- [ ] Adaptive Search Bar
+- [ ] Dynamic NavBar Background
+- [ ] Media Player
 
 
 
