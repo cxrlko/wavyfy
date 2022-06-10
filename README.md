@@ -12,7 +12,7 @@
 
 <div align="center">
 
-  <img width="1536" alt="project" src="https://user-images.githubusercontent.com/98195031/172065375-cad90296-57a0-41af-9beb-f6a9ea199ace.png">
+  <img width="1536" alt="project" src="https://user-images.githubusercontent.com/98195031/173138509-740bef49-237b-4f4d-8074-b5f98f796f4a.png">
 
   <h3 align="center">A Spotify Clone</h3>
 
