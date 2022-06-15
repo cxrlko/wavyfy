@@ -36,9 +36,6 @@ interface IHomePageProperties
 function HomePage(props: IHomePageProperties)
 {
 
-    const [index, setIndex] = React.useState <number> (0); 
-    const [hue, setHue] = React.useState<number>(42); 
-
     const [newReleases, setNewReleases] = React.useState<Album[]>([]); 
     const [topArtists, setTopArtists] = React.useState <Artist[]> ([]); 
     const [topTracks, setTopTracks] = React.useState <Track[]> ([]); 
@@ -52,29 +49,6 @@ function HomePage(props: IHomePageProperties)
     }, []); 
 
 
-    // #region Dominant Color
-    React.useEffect(() => 
-    {
-        if (newReleases.length <= 0) { return; }
-
-
-        Vibrant.from(`${ newReleases[index].coverURL }`)
-        .getPalette()
-        .then((responce) => 
-        {
-            const vibrant = responce.Vibrant; 
-            if (!vibrant) { return; }
-
-
-            const color = Color.rgbToHSL(new RGB(vibrant.r, vibrant.g, vibrant.b));
-
-            setHue(color.hue); 
-
-        })
-        .catch((error) => { console.log(`Error with vibrant js: ${ error }`) }); 
-
-    }, [index, newReleases]); 
-    // #endregion
 
 
     // #region Setup Page 
@@ -104,7 +78,7 @@ function HomePage(props: IHomePageProperties)
     <Scrollview id="Home" axis={ Axis.vertical } classes="sheet" content=
     {
     <>
-        <HomeShowcase focusIndex={ index } setFocusIndex={ setIndex } albums={ newReleases } />
+        <HomeShowcase albums={ newReleases } />
 
         <Region articleID="top-tracks" header="Top Tracks" content=
         {
@@ -133,10 +107,7 @@ function HomePage(props: IHomePageProperties)
             }/>
         }/>
 
-        {
-            (hue != undefined) &&
-            <Shadow hue={ hue } />
-        }
+
 
     </>
     }/>
@@ -158,8 +129,6 @@ function HomePage(props: IHomePageProperties)
 interface IHomeShowcaseProperties 
 {
     albums: Album[]; 
-    focusIndex: number; 
-    setFocusIndex : React.Dispatch<React.SetStateAction<number>>;
 }
 
 let previousIndex : number = -1; 
@@ -167,32 +136,59 @@ let previousIndex : number = -1;
 function HomeShowcase(props: IHomeShowcaseProperties)
 {
 
+    const [index, setIndex] = React.useState <number> (0); 
+    const [hue, setHue] = React.useState<number>(42); 
+
     const navigate = useNavigate();
 
+
+    // #region Dominant Color
+    React.useEffect(() => 
+    {
+        if (props.albums.length <= 0) { return; }
+
+
+        Vibrant.from(`${ props.albums[index].coverURL }`)
+        .getPalette()
+        .then((responce) => 
+        {
+            const vibrant = responce.Vibrant; 
+            if (!vibrant) { return; }
+
+
+            const color = Color.rgbToHSL(new RGB(vibrant.r, vibrant.g, vibrant.b));
+
+            setHue(color.hue); 
+
+        })
+        .catch((error) => { console.log(`Error with vibrant js: ${ error }`) }); 
+
+    }, [index, props.albums]); 
+    // #endregion
 
     // #region Handle Window Paging
     const handleWindowPaging = React.useCallback((event: KeyboardEvent) => 
     {
         if (event.key == `ArrowLeft`)
         { 
-            if (props.focusIndex == 0) { return; } props.setFocusIndex( props.focusIndex - 1 ); 
+            if (index == 0) { return; } setIndex((ind) => ind - 1); 
 
         }
         else if ((event.key == `ArrowRight`))
         {
-            if (props.focusIndex == props.albums.length - 1) { return; } props.setFocusIndex( props.focusIndex + 1 ); 
+            if (index == props.albums.length - 1) { return; } setIndex((ind) => ind + 1); 
 
         };
 
-    }, [props.focusIndex]); 
+    }, [index]); 
     // #endregion
 
     // #region Navigate to current album
     const navigateToCurrentAlbum = React.useCallback(() => 
     {
-        navigate(`/album/${ props.albums[props.focusIndex].id }`); 
+        navigate(`/album/${ props.albums[index].id }`); 
 
-    }, [props.focusIndex, props.albums]); 
+    }, [index, props.albums]); 
     // #endregion
 
     React.useEffect(() => 
@@ -204,7 +200,7 @@ function HomeShowcase(props: IHomeShowcaseProperties)
             window.removeEventListener('keydown', handleWindowPaging);
         }
         
-    }, [props.focusIndex]); 
+    }, [index]); 
 
 
     // #region Scroll variables
@@ -217,23 +213,27 @@ function HomeShowcase(props: IHomeShowcaseProperties)
     // #endregion
 
     // #region Get Image Class List
-    const getImageClassList = React.useCallback((albumIndex: number) => 
+    const generateImageClasses = React.useMemo<string[]>(() => 
     {
-        const list : string[] = []; 
-        if (albumIndex == props.focusIndex) 
+        if (!props.albums) { return [] }
+        const values : string[] = props.albums.map((_, albumIndex) => 
         {
-            list.push((previousIndex <= props.focusIndex) ? `active` : `recover`); 
+            const list : string[] = []; 
+            if (index === albumIndex)
+            {
+                list.push((previousIndex <= index) ? `active` : `recover`); 
+                previousIndex = index; 
+            }
 
-            previousIndex = albumIndex; 
+            const misc = albumIndex > (index + 2) ? `lost` : (albumIndex < index) ? `dismissed` : ``; 
+            list.push(misc); 
 
-        }; 
-        if (albumIndex < props.focusIndex) { list.push(`dismissed`) }
-        else if (albumIndex > props.focusIndex + 2) { list.push(`lost`) };
+            return list.join(` `); 
+        });
 
+        return values;
 
-        return list.join(` `); 
-
-    }, [props.focusIndex]); 
+    }, [index, props.albums]); 
     // #endregion
 
     // #region Component
@@ -260,14 +260,14 @@ function HomeShowcase(props: IHomeShowcaseProperties)
             //Scroll Left
             if ((velocity > scrollThreshhold))
             {
-                if (props.focusIndex == 0) { return; }
-                props.setFocusIndex( props.focusIndex - 1 ); 
+                if (index == 0) { return; }
+                setIndex((ind) => ind - 1); 
             }
             // Scroll Right
             else if ((velocity < -scrollThreshhold))
             {
-                if (props.focusIndex == props.albums.length - 1) { return; }
-                props.setFocusIndex( props.focusIndex + 1 ); 
+                if (index == props.albums.length - 1) { return; }
+                setIndex((ind) => ind + 1); 
             }
 
         }}
@@ -285,7 +285,7 @@ function HomeShowcase(props: IHomeShowcaseProperties)
 
                     (props.albums.map((album : Album, albumIndex : number) => 
                         <img
-                            className={ getImageClassList(albumIndex) }
+                            className={ generateImageClasses[albumIndex] }
                             key={ albumIndex } 
                             src={ album.coverURL }
                             alt={ album.title }
@@ -295,22 +295,22 @@ function HomeShowcase(props: IHomeShowcaseProperties)
             </div>
 
             {
-                props.albums[props.focusIndex] &&
+                props.albums[index] &&
                 <div className="info">
-                    <p className="title truncated">{ props.albums[props.focusIndex].title }</p>
+                    <p className="title truncated">{ props.albums[index].title }</p>
 
                     <div className="trailer">
                     {
-                        props.albums[props.focusIndex].artists[0] &&
-                        <p className="truncated">{ props.albums[props.focusIndex].artists[0].name } &middot; { props.albums[props.focusIndex].releaseDate.getFullYear() }</p>
+                        props.albums[index].artists[0] &&
+                        <p className="truncated">{ props.albums[index].artists[0].name } &middot; { props.albums[index].releaseDate.getFullYear() }</p>
                     }
                     <div className="pagigation">
                         <div
                         onClick={ () => 
                         {
-                            props.setFocusIndex( props.focusIndex - 1 );
+                            setIndex((ind) => ind - 1);
                         }}
-                        aria-disabled={ props.focusIndex == 0 }
+                        aria-disabled={ index == 0 }
                         className="icon">
                         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M4.25 12.2743L19.25 12.2743" strokeLinecap="round" strokeLinejoin="round"/>
@@ -321,9 +321,9 @@ function HomeShowcase(props: IHomeShowcaseProperties)
                         <div
                         onClick={ () => 
                         {
-                            props.setFocusIndex( props.focusIndex + 1 );
+                            setIndex((ind) => ind + 1);
                         }}
-                        aria-disabled={ props.focusIndex == props.albums.length - 1 }
+                        aria-disabled={ index == props.albums.length - 1 }
                         className="icon">
                         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M19.75 11.7257L4.75 11.7257" strokeLinecap="round" strokeLinejoin="round"/>
@@ -333,6 +333,11 @@ function HomeShowcase(props: IHomeShowcaseProperties)
                     </div>
                     </div>
                 </div>
+            }
+
+            {
+            (hue != undefined) &&
+            <Shadow hue={ hue } />
             }
 
         </article>

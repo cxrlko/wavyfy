@@ -25,7 +25,6 @@ module.exports =
         hot: false, 
         https: false, 
         liveReload: false,
-        port: "3011",
         static: 
         {
             directory: path.join(__dirname, 'public'),
