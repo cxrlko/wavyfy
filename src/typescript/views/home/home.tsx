@@ -22,6 +22,7 @@ import { TrackCard } from "../cards/trackCard";
 import { Shadow } from "../app/shadow";
 import Vibrant from "node-vibrant"
 import { Color, RGB } from "../../core/color";
+import moment from "moment";
 
 
 
@@ -221,7 +222,7 @@ function HomeShowcase(props: IHomeShowcaseProperties)
             const list : string[] = []; 
             if (index === albumIndex)
             {
-                list.push((previousIndex <= index) ? `active` : `recover`); 
+                list.push((previousIndex > index) ? `recover`: `active`); 
                 previousIndex = index; 
             }
 
@@ -302,7 +303,7 @@ function HomeShowcase(props: IHomeShowcaseProperties)
                     <div className="trailer">
                     {
                         props.albums[index].artists[0] &&
-                        <p className="truncated">{ props.albums[index].artists[0].name } &middot; { props.albums[index].releaseDate.getFullYear() }</p>
+                        <p className="truncated">{ props.albums[index].artists[0].name } &middot; { moment(props.albums[index].releaseDate).fromNow() }</p>
                     }
                     <div className="pagigation">
                         <div

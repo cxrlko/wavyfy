@@ -61,21 +61,22 @@ function NavBar()
                 </div>
             </div>
 
-             <Textfield
-                type={ textfieldType.search }
-                placeholder={ `Search ...` }
-                onTextfieldCommit={ (value: string) => 
-                {
-                    navigate(`/search/${ value }`);
-
-                }}
-            />
             */}
 
 
         </div>
 
         <div className="links">
+
+            <Link className="search icon" to={ `/search` } children=
+            {
+
+                <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9.375 15.75C13.172 15.75 16.25 12.672 16.25 8.875C16.25 5.07804 13.172 2 9.375 2C5.57804 2 2.5 5.07804 2.5 8.875C2.5 12.672 5.57804 15.75 9.375 15.75Z" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M14.5599 14.6849L18.1369 18.0181" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+
+            }/>
 
             <a target={ "_blank" } href="https://www.linkedin.com/in/carlko/" className="icon">
             <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">

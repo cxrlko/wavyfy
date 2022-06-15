@@ -47,8 +47,8 @@ function ArtistPage(props: IArtistPageProperties)
         // = `7MhMgCo0Bl0Kukl93PZbYS`;
         // = `3B9O5mYYw89fFXkwKh7jCS`;
         // = `6OBGbSaBUvQtk9wpQfDbOE`;
-        // = `4q3ewBCX7sLwd24euuV69X`;
-        // = `4q3ewBCX7sLwd24euuV69X`;
+        // = `6tbjWDEIzxoDsBA1FuhfPW`;
+        // = `4O15NlyKLIASxsJ0PrXPfz`;
         
         setupArtistPage(artistID); 
 
@@ -118,14 +118,17 @@ interface IArtistShowcaseProperties
 function ArtistShowcase(props: IArtistShowcaseProperties)
 {
 
+
     return (
 
         <div id="artist-showcase">
-            <img src={ props.artist.coverURL } alt={ props.artist.name } />
+            <div className="image"><img src={ props.artist.coverURL } alt={ props.artist.name } /></div>
+
+            <div className="details">
+                <h1 className="truncated">{ props.artist.name }</h1>
+                <p>{ props.artist.followers.toLocaleString("en-US") } followers</p>
+            </div>
         </div>
-
-        // .split(` `).slice(0, 2).join(` `)
-
 
     )
 

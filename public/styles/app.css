@@ -68,7 +68,6 @@
     z-index: inherit;
     stroke: inherit; 
     stroke-width: inherit;
-    fill: inherit;
 
     /* white-space: inherit; */
     /* overflow: inherit; */
@@ -83,7 +82,6 @@ html
     position: relative; 
     font-size: 14px;
 
-    fill: none; 
     color: var(--foreground); 
     stroke: var(--foreground);
 

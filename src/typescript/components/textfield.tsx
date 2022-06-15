@@ -20,8 +20,16 @@ interface ITextfieldProperties
 {
     type: textfieldType,
     placeholder : string, 
+
     leadIcon?: JSX.Element, 
     trailIcon?: JSX.Element, 
+    readOnly?: boolean; 
+    initialValue?: string; 
+
+    id? : string; 
+    class?: string; 
+    numbersOnly?: boolean; 
+
 
     /**
      * Invoked when the user is about to type
@@ -50,99 +58,156 @@ interface ITextfieldStates
     error: boolean; 
 }
 
-class Textfield extends React.Component<ITextfieldProperties, ITextfieldStates>
+
+
+function Textfield(props: ITextfieldProperties)
 {
-    private id : string = uuid(); 
 
-    constructor(props: ITextfieldProperties)
+    const id : string = uuid(); 
+
+    const [focused, setFocused] = React.useState(false); 
+    const [error, setError] = React.useState(false); 
+
+    const inputRef = React.useRef<HTMLInputElement>(undefined); 
+
+    React.useEffect(() => 
     {
-        super(props); 
 
-        this.state = 
+        if (!inputRef || (props.initialValue == undefined)) { return; }
+
+        inputRef.current.value = props.initialValue; 
+
+    }, [inputRef]);
+
+
+    // #region Approvals
+    const keyApprovedAsNumber = React.useCallback((event: React.KeyboardEvent<HTMLInputElement>) => 
+    {
+        let acceptable = false; 
+
+        switch (event.key)
         {
-            focussed: false, 
-            error: false
+            case "Tab":
+                acceptable = true; 
+                break;
+
+            case "Backspace":
+                acceptable = true; 
+                break;
+
+            case "Enter":
+                acceptable = true; 
+                break;
+
+            case "CapsLock":
+                acceptable = true; 
+                break;
+
+            case "Shift":
+                acceptable = true; 
+                break;
+
+            case "Control":
+                acceptable = true; 
+                break;
         }
 
-        this.onFocusInEvent = this.onFocusInEvent.bind(this);
-        this.onEditEvent = this.onEditEvent.bind(this);
-        this.onChangedEvent = this.onChangedEvent.bind(this); 
-        this.onCommitEvent = this.onCommitEvent.bind(this);
-    }
+        return acceptable; 
 
-    render(): React.ReactNode 
-    {
-        return (
-            <div className={ `textfield${ (this.state.error) ? ` error` : `` }` }>
+    }, []); 
+    // #endregion 
 
-            {
-                // - Lead Icon
-                this.props.leadIcon &&
-                <div className="icon">
-                    { this.props.leadIcon }
-                </div>
-            }
+    // #region Component
+    return (
 
-            {
-                // - Inputfield
-                <div className="input">
-                    {/* { (this.state.focussed == false) ? <label htmlFor={ this.id }>{ this.props.placeholder }</label> : <></> } */}
-                    <input
-                        placeholder={ this.props.placeholder }
-                        id={ this.id }
-                        type={ this.props.type } 
-                        onFocus = { this.onFocusInEvent } 
-                        onChange = { (event) => { this.onEditEvent(event.target.value) }} 
-                        onBlur = { eve => { this.onChangedEvent(eve.target.value) }}
-                        onKeyUp = { (event) =>
-                        {
-                            if (event.key == "Enter") { this.onCommitEvent((event.target as HTMLInputElement).value) }
-                        }}
-                    />
-                </div>
-            }
+        <div
+        id={ props.id } 
+        className={ `textfield${ props.class ? ` ${ props.class }` : `` }${ (error) ? ` error` : `` }` }>
 
-            {
-                //Trail Icon
-                this.props.trailIcon &&
-                <div className="icon">
-                    { this.props.trailIcon }
-                </div>
-            }
+        {
+            // - Lead Icon
+            props.leadIcon &&
+            <div className="icon">
+                { props.leadIcon }
             </div>
+        }
 
-        );
-    }
+        {
+            // - Inputfield
+            <div className="input">
+                {/* { (state.focussed == false) ? <label htmlFor={ id }>{ props.placeholder }</label> : <></> } */}
+                <input
+                    placeholder={ props.placeholder }
+                    id={ id }
+                    readOnly={ props.readOnly ? props.readOnly : false }
+                    type={ props.type } 
+                    ref={ inputRef }
+                    onFocus = { onFocusInEvent } 
+                    onChange = { (event) => { onEditEvent(event.target.value) }} 
+                    onBlur = { eve => { onChangedEvent(eve.target.value) }}
+                    onKeyDown={ (event) =>
+                    {
+                        if (!props.numbersOnly) { return; }
+                        if (isNaN(parseInt(event.key)))
+                        {
+                            let passed = keyApprovedAsNumber(event);
+                            if (passed == false) { event.preventDefault();  }
+                        }
+                    }}
+                    onKeyUp = { (event) =>
+                    {
+                        if (event.key == "Enter") { onCommitEvent((event.target as HTMLInputElement).value) }
+                    }}
+                />
+            </div>
+        }
+
+        {
+            //Trail Icon
+            props.trailIcon &&
+            <div className="icon">
+                { props.trailIcon }
+            </div>
+        }
+        </div>
+
+    )
+    // #endregion
+
 
     // - Methods    
-    // * Edit methods
-    onFocusInEvent()
+    // #region Textfield Methods
+    function onFocusInEvent()
     {
-        this.setState({ focussed: true }); 
+        setFocused(true); 
 
-        if (this.props.onTextfieldFocus) { this.props.onTextfieldFocus(); }
+        if (props.onTextfieldFocus) { props.onTextfieldFocus(); }
 
     }
 
-    onEditEvent(value: string)
+    function onEditEvent(value: string)
     {
-        if (this.props.onTextfieldEdit) { this.props.onTextfieldEdit(value); }
+        if (props.onTextfieldEdit) { props.onTextfieldEdit(value); }
     }
 
-    onChangedEvent(value: string)
+    function onChangedEvent(value: string)
     {
-        if (value == "" && this.state.focussed == true) 
+        if (value == "" && focused == true) 
         {
-            this.setState({ focussed: false });
+            setFocused(false); 
         }
 
-        if (this.props.onTextfieldChanged) { this.props.onTextfieldChanged(value); }
+        if (props.onTextfieldChanged) { props.onTextfieldChanged(value); }
     }
 
-    onCommitEvent(value : string)
+    function onCommitEvent(value : string)
     {
-        if (this.props.onTextfieldCommit) { this.props.onTextfieldCommit(value); }
+        if (props.onTextfieldCommit) { props.onTextfieldCommit(value); }
     }
+    // #endregion
+
+
+
 }
 
 

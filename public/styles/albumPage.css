@@ -1,0 +1,184 @@
+
+
+
+
+
+/* ^ Album page */
+/* #region Album Page Showcase */
+#albumpage #showcase 
+{
+    position: relative; 
+
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between;
+
+    width: 100%; 
+    height: 64vmin;
+    min-height: 28rem;
+
+    margin: 3rem 0px; 
+}
+
+#albumpage #showcase > div 
+{
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center;
+
+    flex: 1 1 100%;
+    max-width: 100%;
+
+    height: 100%;
+}
+
+#albumpage #showcase > div.cover 
+{
+    padding: 4vmax; 
+    align-items: center;
+}
+
+#albumpage #showcase > div.header
+{
+    height: unset;
+    width: 100%;
+    align-items: flex-start;
+}
+
+#albumpage #showcase > div.header > div.mtdata 
+{
+    display: flex; 
+    align-items: center;
+    justify-content: flex-start;
+
+}
+
+#albumpage #showcase > div.header > h1 
+{
+    width: 100%;
+    height: 6rem;
+    line-clamp: 2;
+
+    margin: 1rem 0px; 
+}
+
+#albumpage #showcase > div.header > div.mtdata a
+{
+    color: var(--foreground); 
+}
+
+#albumpage #showcase > div.header > div.mtdata > p
+{
+    color: var(--tint); 
+}
+
+#albumpage #showcase > div.metadata
+{
+    align-items: flex-end;
+}
+
+#albumpage #showcase > div.metadata > p
+{
+    margin: 1rem 0px; 
+}
+
+#albumpage #showcase > div.metadata > div.divider
+{
+    width: 2rem;
+}
+
+@media screen and (max-width: 750px)
+{
+    #albumpage #showcase
+    {
+        flex-direction: column;
+        padding-bottom: 4vh;
+        margin-bottom: 12vh;
+    }
+
+    #albumpage #showcase > div 
+    {
+        width: 100%;
+    }
+
+    #albumpage #showcase > div.header 
+    {
+        position: absolute;
+        max-height: 7rem;
+        bottom: -3rem; 
+        left: 0px; 
+        right: 0px;
+
+    }
+
+    #albumpage #showcase > div.header  > h1 
+    {
+        font-size: 1.5rem;
+        height: 2.5rem;
+        margin: 0px 0px; ;
+    }
+
+    #albumpage #showcase > div.metadata
+    {
+        display: none;
+    }
+
+    #albumTracks > div.album-track > p.index 
+    {
+        display: none; 
+    }
+
+}
+
+
+
+
+
+/* #endregion */
+
+/* #region Album Tracks */
+#albumTracks
+{
+    height: unset;
+    margin-bottom: 16vh;
+}
+
+
+#albumTracks > div.album-track
+{
+    position: relative;
+
+    display: flex; 
+    align-items: flex-start; 
+    justify-content: space-between;
+
+    margin: 1rem 0px; 
+}
+
+
+#albumTracks > div.album-track > p.index 
+{
+    position: absolute;
+    top: 0px;
+    left: -4rem;
+
+    text-align: right;
+
+    color: var(--tint);
+    width: 3rem; ;
+
+}
+
+
+
+#albumTracks > div.album-track > p.time 
+{
+    color: var(--tint); 
+}
+
+/* #endregion */
+
+
+
+
+
