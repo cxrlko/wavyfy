@@ -6,8 +6,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = 
 {
-    // mode: "development",
-    mode: "production",
+    mode: "development",
+    // mode: "production",
     devtool: "eval-source-map",
     entry: 
     {

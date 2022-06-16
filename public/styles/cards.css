@@ -29,6 +29,13 @@ div.track-card > div.cover
 
 }
 
+div.track-card > div.cover img, a.album-card > div.cover img, .artist-card > .pfp > img
+{
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover;
+}
+
 
 div.track-card > div.info 
 {
@@ -140,12 +147,6 @@ a.album-card > div.content > p.name
 
 }
 
-.artist-card > .pfp > img
-{
-    width: 100%; 
-    height: 100%;
-    object-fit: cover;
-}
 
 .artist-card > div.info 
 {
