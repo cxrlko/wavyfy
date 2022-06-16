@@ -8,7 +8,7 @@
 /public/dist
 /src/javascript
 /package-lock.json
-/.firebase
+.firebase
 
 
 
