@@ -26,7 +26,7 @@
 
 ## About
 
-Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam dolor fugiat commodi quam. Earum nobis laborum repudiandae eveniet at illum dicta repellendus ab voluptatum alias, asperiores doloremque esse eligendi officiis eius? Excepturi ea quia, fugit quo ad aspernatur, eaque, quam ut vero voluptatibus illum? Hic voluptatem quasi obcaecati architecto animi et suscipit, iure dolor, autem beatae rem. Placeat dolorum maiores iusto qui inventore dolore id reiciendis nemo illum delectus temporibus possimus iure mollitia praesentium error, aliquam odit consectetur nostrum. Illum iste iure ab velit asperiores temporibus hic aliquid commodi eum, quasi, quaerat praesentium a qui vero consequuntur optio voluptatibus suscipit!
+Wavyfy is a web based, spotify application showcasing music and artist data in a mobile friendly and interactive interface.
 
 
 ## Tech Stack
