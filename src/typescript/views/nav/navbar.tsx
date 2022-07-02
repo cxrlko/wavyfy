@@ -66,7 +66,7 @@ function NavBar()
 
         </div>
 
-        <div className="links">
+        {/* <div className="links">
 
             <Link className="search icon" to={ `/search` } children=
             {
@@ -97,7 +97,7 @@ function NavBar()
             </svg>
             </a>
         
-        </div>  
+        </div>   */}
     </nav>
     )
     // #endregion
