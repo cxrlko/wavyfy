@@ -223,7 +223,7 @@ class Network
     // #endregion
 
     // #region Fetch Album Tracks
-    async fetchAlbumTracks(albumID: string) : Promise<Track[]>
+    async fetchAlbumTracks(albumID: string, album: Album) : Promise<Track[]>
     {
         let items: Track[] = []; 
 
@@ -243,7 +243,18 @@ class Network
         .then((responce) => { return responce.json() })
         .then((json) => 
         {
-            items = (json.items as any[]).map((trackData) => new Track(trackData)); 
+            items = (json.items as any[]).map((trackData) =>
+            {
+                const data = {...trackData};
+                data.album = 
+                {
+                    images: [{ url: album.coverURL }], 
+                    name: album.title, 
+                    id: album.id
+                }
+
+                return new Track(data); 
+            }); 
         })
 
         return items; 
@@ -335,6 +346,21 @@ class Network
     }
     // #endregion
 
+
+    // ^ Track 
+    // #region Fetch Track 
+    async fetchTrack(trackID: string)
+    {
+        const authentication = await this.getFetchOptions(); 
+
+        const data = await fetch(`https://api.spotify.com/v1/tracks/${ trackID }?market=US`, authentication)
+        .then((responce) => { return responce.json() })
+        .then((json) => json); 
+
+        return new Track(data);
+        
+    }
+    // #endregion
 
 
 }

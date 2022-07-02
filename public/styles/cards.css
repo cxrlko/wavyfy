@@ -13,6 +13,14 @@ div.track-card
     color: var(--foreground); 
 
     margin: 1rem 0px; 
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+div.track-card.playable 
+{
+    cursor: pointer;
+    pointer-events: all;
 }
 
 div.track-card > div 

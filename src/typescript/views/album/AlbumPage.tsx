@@ -12,6 +12,7 @@ import { Color, RGB } from "../../core/color";
 import { Album } from "../../models/album";
 import { Track } from "../../models/track";
 import { getIDfromURL } from "../../utilities/getId";
+import { MediaContext } from "../app/app";
 import { Shadow } from "../app/shadow";
 
 
@@ -62,7 +63,7 @@ function AlbumPage(props: IAlbumPageProperties)
 
         setAlbum(item); 
 
-        const songs = await Architect.network.fetchAlbumTracks(id); 
+        const songs = await Architect.network.fetchAlbumTracks(id, item); 
         setSongs(songs); 
 
  
@@ -183,9 +184,16 @@ interface IAlbumTrackProperties
 function AlbumTrack(props: IAlbumTrackProperties)
 {
 
+    const media = React.useContext(MediaContext); 
+
     return (
 
-        <div className="album-track">
+        <div
+        onClick={ () => 
+        {
+            media.updateMedia(props.item) 
+        }}
+        className={ `album-track${ (props.item.previewURL) ? ` playable` : `` }` }>
             <p className="index">{ props.item.trackIndex }</p>
             <p>{ props.item.title }</p>
             <p className="time">{ props.item.duration.digitalTimeFormat() }</p>

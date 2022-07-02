@@ -18,14 +18,16 @@ class Track
     duration: Duration; 
     trackIndex: number; 
     
-    albumID: string | undefined; 
-    coverURL: string | undefined; 
     artists: MVArtist[] = []; 
-
+    
+    previewURL : string; 
+    
+    coverURL: string | undefined = undefined; 
+    albumID: string | undefined = undefined; 
+    albumName: string | undefined = undefined; 
 
     constructor(data: any)
     { 
-        // console.log(data); 
         this.id = data.id; 
 
         this.title = data.name;
@@ -34,9 +36,14 @@ class Track
         this.duration = new Duration(data.duration_ms);
         this.trackIndex = data.track_number; 
         
-        this.albumID = (data.album) ? (data.album.id) : undefined;
-        this.coverURL = (data.album) ? (data.album.images as any[])[0].url : undefined;
         this.artists = (data.artists as any[]).map((artistData) => new MVArtist(artistData)); 
+
+        this.previewURL = data.preview_url ? data.preview_url : undefined; 
+        this.albumID = data.album.id; 
+        this.coverURL = (data.album.images as any[])[0].url; 
+
+        this.albumName = data.album.name; 
+
     }
 
 }

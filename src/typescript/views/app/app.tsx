@@ -2,6 +2,9 @@
 
 import * as React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Architect } from "../../admin/architect";
+import { Network } from "../../admin/network";
+import { Track } from "../../models/track";
 import { AlbumPage } from "../album/AlbumPage";
 import { ArtistPage } from "../artist/ArtistPage";
 import { HomePage } from "../home/home";
@@ -16,17 +19,62 @@ interface IAppProperties
 }
 
 
-class App extends React.Component 
+interface IMediaContext 
 {
-    constructor(props: IAppProperties)
-    {
-        super(props); 
-    }
+    media: Track; 
+    updateMedia: (media: Track) => Promise<void>; 
+}
 
-    render(): React.ReactNode 
+const MediaContext = React.createContext<IMediaContext>(undefined);
+const MediaProvider = MediaContext.Provider
+
+
+function App(props: IAppProperties)
+{
+
+    const [playingMedia, setPlayingMedia] = React.useState<Track>(undefined); 
+
+    // #region Player
+    const player = React.useMemo(() => 
     {
-        return (
-        <>
+        return new Audio(); 
+    }, []); 
+    // #endregion
+
+
+    React.useEffect(() => 
+    {
+        if (!playingMedia) { return }; 
+
+        player.src = playingMedia.previewURL; 
+        player.load();
+        player.play(); 
+
+        navigator.mediaSession.metadata = new MediaMetadata({
+            album: playingMedia.albumName, 
+            title: playingMedia.title, 
+            artist: playingMedia.artists[0].name, 
+            artwork: [{ src: playingMedia.coverURL }]
+        })
+
+
+    }, [playingMedia]); 
+
+    // #region Update Playing Media
+    const updatePlayingMedia = React.useCallback(async (media: Track) => 
+    {
+        if (!media.previewURL) { return }; 
+        try 
+        {
+            setPlayingMedia(media); 
+
+        } catch (error) { console.log(`Error playing media: ${ error }`) }
+
+    }, []); 
+    // #endregion
+
+    return (
+        <MediaProvider value={{ media: playingMedia, updateMedia: updatePlayingMedia }}>
             <NavBar />
 
             <Routes>
@@ -36,14 +84,16 @@ class App extends React.Component
                 <Route path="/search/*" element={ <SearchPage /> } />
             </Routes>
 
-            <MediaPlayer />
-        </>
-        )
-    }
+            {
+                playingMedia &&
+                <MediaPlayer />
+            }
+
+        </MediaProvider>
+    )
 }
 
-
-export { App }
+export { App, MediaContext }
 
 
 
