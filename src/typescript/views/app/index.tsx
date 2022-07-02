@@ -16,11 +16,11 @@ const rootElement = document.getElementById(`root`);
 onload 
 {
     const root = createRoot(rootElement);
-    root.render(
-        <BrowserRouter>
-        { <App /> }
-        </BrowserRouter>
-    );
+    // root.render(
+    //     <BrowserRouter>
+    //     { <App /> }
+    //     </BrowserRouter>
+    // );
 
     if (Authentication.currentUser === undefined)
     {
