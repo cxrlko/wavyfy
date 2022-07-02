@@ -32,41 +32,11 @@ function NavBar()
         <div className="navigation">
             <Logo />
 
-           {/*
-            <div className="directions">
-                <div
-                style={{ cursor: "pointer" }}
-                onClick={ () => 
-                {
-                    navigate(-1); 
-                }}
-                className="icon">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M15.5 19L8.5 12L15.5 5" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-                </div>
-
-
-
-                <div
-                style={{ cursor: "pointer" }}
-                onClick={ () => 
-                {
-                    navigate(1); 
-                }}
-                className="icon">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M8.5 5L15.5 12L8.5 19" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-                </div>
-            </div>
-
-            */}
 
 
         </div>
 
-        {/* <div className="links">
+        <div className="links">
 
             <Link className="search icon" to={ `/search` } children=
             {
@@ -78,7 +48,7 @@ function NavBar()
 
             }/>
 
-            <a target={ "_blank" } href="https://www.linkedin.com/in/carlko/" className="icon">
+            {/* <a target={ "_blank" } href="https://www.linkedin.com/in/carlko/" className="icon">
             <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
             <path fillRule="evenodd" clipRule="evenodd" d="M24 0C10.7452 0 0 10.7452 0 24C0 37.2548 10.7452 48 24 48C37.2548 48 48 37.2548 48 24C48 10.7452 37.2548 0 24 0ZM11.5216 19.8778H16.9605V36.2196H11.5216V19.8778ZM17.3188 14.8227C17.2835 13.2204 16.1377 12 14.277 12C12.4164 12 11.2 13.2204 11.2 14.8227C11.2 16.3918 12.3805 17.6473 14.2064 17.6473H14.2412C16.1377 17.6473 17.3188 16.3918 17.3188 14.8227ZM30.3131 19.4941C33.8922 19.4941 36.5754 21.8303 36.5754 26.8497L36.5752 36.2196H31.1365V27.4767C31.1365 25.2807 30.3494 23.7822 28.3805 23.7822C26.8779 23.7822 25.9829 24.7924 25.5898 25.7682C25.446 26.1178 25.4107 26.605 25.4107 27.0934V36.22H19.9711C19.9711 36.22 20.0428 21.4117 19.9711 19.8783H25.4107V22.1929C26.1325 21.0802 27.4254 19.4941 30.3131 19.4941Z"/>
             </svg>
@@ -95,9 +65,9 @@ function NavBar()
             <path d="M16.1154 39.9551C16.1221 40.156 15.892 40.3227 15.6072 40.3259C15.3208 40.3327 15.0891 40.1701 15.0859 39.9724C15.0859 39.7695 15.3109 39.6045 15.5973 39.5996C15.8821 39.594 16.1154 39.7554 16.1154 39.9551Z"/>
             <path d="M17.9396 39.6392C17.9737 39.8353 17.7757 40.0366 17.4929 40.0899C17.2148 40.1419 16.9574 40.0209 16.9221 39.8264C16.8876 39.6255 17.0891 39.4241 17.3668 39.3721C17.65 39.3221 17.9035 39.4399 17.9396 39.6392Z"/>
             </svg>
-            </a>
+            </a> */}
         
-        </div>   */}
+        </div>  
     </nav>
     )
     // #endregion
