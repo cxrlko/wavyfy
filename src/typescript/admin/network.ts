@@ -8,9 +8,27 @@ import { Album } from "../models/album";
 import { Artist, MVArtist } from "../models/artist";
 import { Query } from "../models/query";
 import { Track } from "../models/track";
+import { initializeApp } from "firebase/app";
+import { getAuth, signInAnonymously } from "firebase/auth"
 
 const clientID = `7c79ca1d91b24f3fa7057f1bfc10bcec`; 
 const secretID = `ddc089f46cde4fc6ab46219fd0481373`;
+
+
+const FirebaseConfiguration = 
+{
+    apiKey: "AIzaSyAASUE2iVhpOmBVN9-1Ljalz3m_I27uL6c",
+    authDomain: "wavyfy.firebaseapp.com",
+    projectId: "wavyfy",
+    storageBucket: "wavyfy.appspot.com",
+    messagingSenderId: "492135810754",
+    appId: "1:492135810754:web:a9f13df2b00e14626e1d5b",
+    measurementId: "G-HE3DMNYP24"
+}
+
+const Firebase = initializeApp(FirebaseConfiguration); 
+export const Authentication = getAuth(Firebase); 
+
 
 
 class Network 
@@ -19,6 +37,11 @@ class Network
     constructor()
     {
 
+    }
+
+    static async authenticateUser()
+    {
+        await signInAnonymously(Authentication); 
     }
 
 
