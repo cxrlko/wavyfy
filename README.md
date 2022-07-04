@@ -38,6 +38,15 @@ Wavyfy is a web based, spotify application showcasing music and artist data in a
 * [TypeScript](https://www.typescriptlang.org/) (Adding JavaScript Casing)
 * [WebPack](https://webpack.js.org/) (App Bundler)
 
+## Folder Structure
+- public (Deployed and Hosted folder)
+- src/typescript (All development code)
+  - admin (networking and info dependencies)
+  - components (custom programmed components for my projects)
+  - core (custom utility classes to enhance interface)
+  - models (Class model structure for project)
+  - utilities (custom functions)
+  - views (Interface components)
 
 
 ## Installation
