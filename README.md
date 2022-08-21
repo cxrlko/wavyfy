@@ -24,6 +24,13 @@
 </div>
 
 
+<br>
+
+## Preview
+<iframe src="https://player.vimeo.com/video/725751816?h=e33dad7d99" width="640" height="564" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+<br>
+<br>
+
 ## About
 
 Wavyfy is a web based, spotify application showcasing music and artist data in a mobile friendly and interactive interface.
