@@ -30,7 +30,7 @@
 
 
 
-https://user-images.githubusercontent.com/98195031/185799930-1f737d3b-97ed-420b-b736-64c58444c175.mp4
+[Wavyfy Preview](https://user-images.githubusercontent.com/98195031/185799930-1f737d3b-97ed-420b-b736-64c58444c175.mp4)
 
 
 <br>
