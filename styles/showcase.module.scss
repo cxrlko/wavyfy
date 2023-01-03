@@ -1,0 +1,307 @@
+
+@use "../styles/variables" as app; 
+
+
+
+#showcase 
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    padding-top: 4rem;
+    margin-bottom: 4vh;
+
+
+    > p.title {
+        width: 100%; 
+        text-align: left;
+    }
+
+
+    > div.info 
+    {
+        width: 100%;
+    }
+}
+
+#releases 
+{
+    position: relative;
+    width: 100%; ;
+
+    height: 36vh; 
+    /* min-height: 150px; 
+    max-height: 350px; */
+
+
+    margin: 4vmax 8vmax; 
+    padding-top: 1rem; 
+    padding-bottom: 2rem;
+
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+
+    cursor: pointer;
+
+    > img {
+        position: absolute;
+        transform-origin: bottom;
+
+        // opacity: 0%;
+
+        width: 30vh; 
+        height: 30vh;
+        padding: 2vh; 
+
+        animation-duration: 350ms;
+        animation-timing-function: ease-out;
+
+        @media screen and (min-width: 1400px) {
+            animation-duration: 600ms;
+        }
+    }
+
+    @media screen and (min-width: 700px) {
+        height: 45vh;
+
+        > img {
+            width: 36vh; 
+            height: 36vh;
+        }
+    }
+
+    --unviewablePosition: translateX(-64vw) translateY(0%) rotateZ(-40deg);
+
+    $position-viewable: translateX(0%) translateY(0%) rotateZ(0deg);
+
+    > img.lost {
+        -webkit-animation-name: lost;
+        animation-name: lost;
+
+        opacity: 0%;
+    }
+
+    > img.dismissed {
+        -webkit-animation-name: dismissedActive;
+            animation-name: dismissedActive; 
+
+        z-index: 0; 
+        opacity: 0%;
+        -webkit-transform: var(--unviewablePosition);
+            -ms-transform: var(--unviewablePosition);
+                transform: var(--unviewablePosition);
+    } 
+    
+    > img.active {
+        -webkit-animation-name: gainActive;
+            animation-name: gainActive;
+
+        z-index: 20; 
+        opacity: 100%; 
+        -webkit-transform: var(--viewablePosition); 
+            -ms-transform: var(--viewablePosition); 
+                transform: var(--viewablePosition);
+    }
+
+    > img.recover {
+        -webkit-animation-name: recoverActive;
+        animation-name: recoverActive;
+
+        z-index: 20; 
+            opacity: 100%;
+            -webkit-transform: var(--viewablePosition);
+                -ms-transform: var(--viewablePosition);
+                    transform: var(--viewablePosition);
+    }
+
+
+
+}
+
+div.trailer {
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between;
+
+    margin: 0.2rem 0px;
+
+    > div.pagination
+    {
+        display: flex; 
+        align-items: center; 
+        justify-content: flex-end;
+
+        fill: none;
+    }
+}
+
+
+#shadow 
+{
+    position: absolute;
+    top: 0px; 
+    left: 0px; 
+    right: 0px; ;
+
+    width: 100vw; 
+    height: 48vh;
+
+    z-index: -20; 
+}
+
+
+
+/* #region Animations */
+@-webkit-keyframes gainActive 
+{
+    0% 
+    {
+        opacity: 100%; 
+        z-index: 15;
+        -webkit-transform: rotateZ(-15deg);
+                transform: rotateZ(-15deg);
+    }
+    100% 
+    {
+        opacity: 100%; 
+        z-index: 20;
+        -webkit-transform: rotateZ(0deg);
+                transform: rotateZ(0deg);
+    }
+
+}
+
+@keyframes gainActive 
+{
+    0% 
+    {
+        opacity: 100%; 
+        z-index: 15;
+        -webkit-transform: rotateZ(-15deg);
+                transform: rotateZ(-15deg);
+    }
+    100% 
+    {
+        opacity: 100%; 
+        z-index: 20;
+        -webkit-transform: rotateZ(0deg);
+                transform: rotateZ(0deg);
+    }
+
+}
+
+@-webkit-keyframes recoverActive 
+{
+    0%
+    {
+        z-index: 25; 
+        opacity: 0%; 
+        -webkit-transform: var(--unviewablePosition); 
+                transform: var(--unviewablePosition);
+    }
+    50%
+    {
+        opacity: 80%;
+    }
+    100%
+    {
+        z-index: 20; 
+        opacity: 100%; 
+        -webkit-transform: var(--viewablePosition); 
+                transform: var(--viewablePosition);
+    }
+}
+
+@keyframes recoverActive 
+{
+    0%
+    {
+        z-index: 25; 
+        opacity: 0%; 
+        -webkit-transform: var(--unviewablePosition); 
+                transform: var(--unviewablePosition);
+    }
+    50%
+    {
+        opacity: 80%;
+    }
+    100%
+    {
+        z-index: 20; 
+        opacity: 100%; 
+        -webkit-transform: var(--viewablePosition); 
+                transform: var(--viewablePosition);
+    }
+}
+
+@-webkit-keyframes dismissedActive 
+{
+    0%
+    {
+        z-index: 25; 
+        opacity: 100%; 
+        -webkit-transform: var(--viewablePosition); 
+                transform: var(--viewablePosition);
+    }
+    50%
+    {
+        opacity: 80%;
+    }
+    100%
+    {
+        z-index: 25; 
+        opacity: 0%; 
+        -webkit-transform: var(--unviewablePosition); 
+                transform: var(--unviewablePosition);
+    }
+}
+
+@keyframes dismissedActive 
+{
+    0%
+    {
+        z-index: 25; 
+        opacity: 100%; 
+        -webkit-transform: var(--viewablePosition); 
+                transform: var(--viewablePosition);
+    }
+    50%
+    {
+        opacity: 80%;
+    }
+    100%
+    {
+        z-index: 25; 
+        opacity: 0%; 
+        -webkit-transform: var(--unviewablePosition); 
+                transform: var(--unviewablePosition);
+    }
+}
+
+@-webkit-keyframes lost 
+{
+    0% 
+    {
+        opacity: 100%;
+    }
+    100% 
+    {
+        opacity: 0%;
+    }
+}
+
+@keyframes lost 
+{
+    0% 
+    {
+        opacity: 100%;
+    }
+    100% 
+    {
+        opacity: 0%;
+    }
+}
+/* #endregion Animations */

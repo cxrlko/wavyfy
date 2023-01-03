@@ -1,0 +1,23 @@
+
+
+.icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 0.1rem; 
+    cursor: pointer;
+
+    background-color: transparent;
+
+    > :global(svg) {
+        stroke: #1A1C1E;
+    }
+    
+    &:disabled {
+        cursor: not-allowed;
+        pointer-events: none;
+        > :global(svg) {
+            stroke: #B3B5C3;
+        }
+    }
+}
+

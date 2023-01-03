@@ -1,0 +1,79 @@
+
+
+
+
+div.scrollview 
+{
+    position: relative;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+
+    width: 100%; 
+    height: 100%;
+}
+
+div.scrollview > div.viewport 
+{
+    position: absolute; 
+    top: 0px; 
+    left: 0px;
+    bottom: 0px; 
+    right: 0px; 
+
+    height: 100%; 
+    width: 100%;
+
+    overflow: hidden;
+
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;
+}
+
+div.scrollview > div.viewport::-webkit-scrollbar 
+{
+    display: none;
+}
+  
+
+div.scrollview.horizontal > div.viewport
+{
+    display: flex; 
+    align-items: center; 
+    justify-content: flex-start;
+
+    overflow-x: scroll;
+}
+
+div.scrollview.vertical > div.viewport 
+{
+    display: flex; 
+    align-items: center; 
+    justify-content: flex-start;
+
+    flex-direction: column;
+    overflow-y: scroll;
+}
+
+div.scrollview > div.viewport > div.content 
+{
+    width: unset; 
+    height: unset;
+}
+
+div.scrollview.horizontal > div.viewport > div.content 
+{
+    height: 100%;
+    width: min-content;
+
+    display: flex; 
+    align-items: center; 
+    justify-content: flex-start;
+}
+
+div.scrollview.vertical > div.viewport > div.content 
+{
+    width: 100%;
+    height: min-content;
+}
+
