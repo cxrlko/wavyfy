@@ -3,5 +3,80 @@
 @use "../styles/variables" as app;
 
 
+#main {
+    padding: 0px 8vw; 
+
+    > section {
+        margin-bottom: 3rem;
+
+        display: flex; 
+        flex-direction: column; 
+        gap: 1rem 0px; 
+        justify-content: flex-start;
+    }
+
+    > section:last-child {
+        margin-bottom: 16vh;
+    }
+}
+
+#nav {
+    position: fixed;
+    top: 0px; 
+    left: 0px;
+    right: 0px; 
+
+    z-index: 5; 
+
+    background-color: rgba(255,255,255,0.2);
+    backdrop-filter: blur(1rem);
+
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between;
+
+    padding: 1rem 2rem; 
+
+    #logo {
+
+        display: flex; 
+        align-items: center; 
+        justify-content: flex-start;
+        gap: 0px 0.4rem; 
+
+        > svg {
+            width: 1.5rem; 
+            height: 1.5rem;
+        }
+
+    }
+
+    .links {
+        display: flex; 
+        justify-content: flex-end;
+        gap: 0px 1rem; 
+
+        .search {
+            width: 1.5rem; 
+            height: 1.5rem;
+    
+            fill: none;
+        }
+
+        .github {
+            width: 1.5rem; 
+            height: 1.5rem; 
+            fill: app.$color-foreground !important;
+        }
+    }
+
+    
+}
+
+
+#tracks, #artists, #albums {
+    gap: 1rem 1rem; 
+}
+
 
 

@@ -7,11 +7,12 @@ interface ArtistCardProps {
     coverURL? : string; 
 }
 
-const ArtistCard = ({ coverURL }: ArtistCardProps) => {
+const ArtistCard = () => {
 
+    const coverURL = "https://i.scdn.co/image/ab6761610000f17899e4fca7c0b7cb166d915789"
 
     return (
-        <Link href={ `/artist/link` }>
+        <Link href={ `/artist/link` } className={ styles.artistCard }>
             <div className={ styles.pfp }>
             {
                 coverURL ?
@@ -26,7 +27,11 @@ const ArtistCard = ({ coverURL }: ArtistCardProps) => {
                 </Icon>
             }
             </div>
-            <div className={ styles.info }></div>
+            
+            <div className={ styles.info }>
+                <p>Artist</p>
+                <p>Artist Name</p>
+            </div>
         </Link>
     )
 }

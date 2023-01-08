@@ -16,7 +16,7 @@ const Home = () => {
             <HomeShowcase />
 
             <Region header="Top Tracks">
-            <Grid id="" minItemWidth={ 332 }>
+            <Grid id={ styles.tracks } minItemWidth={ 332 }>
                 <>
                 <TrackCard />
                 <TrackCard />
@@ -28,7 +28,7 @@ const Home = () => {
 
 
             <Region header="Top Artists">
-            <Grid id="" minItemWidth={ 332 }>
+            <Grid id={ styles.artists } minItemWidth={ 332 }>
                 <>
                     <ArtistCard />
                     <ArtistCard />
@@ -40,7 +40,7 @@ const Home = () => {
 
 
             <Region header="Top Albums">
-            <Grid id="" minItemWidth={ 332 }>
+            <Grid id={ styles.albums } minItemWidth={ 332 }>
                 <>
                 <AlbumCard />
                 <AlbumCard />

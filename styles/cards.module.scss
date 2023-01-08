@@ -6,18 +6,55 @@
 .trackcard {
 
     display: grid;
-    grid-template-columns: 20% auto 20%;
+    grid-template-columns: 18% auto 18%;
     gap: 0rem 1rem; 
     
 
     cursor: pointer;
 
-    margin: 1rem 0px; 
+    > .cover {
+        
 
-    > .cover > img {
-        width: 100%; 
-        height: 100%; 
-        object-fit: cover;
+        > img {
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover;
+        }
     }
 }
 
+.artistCard {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    padding: 0.5rem 0.5rem; 
+
+    gap: 0px 1rem;
+
+    .pfp {
+        height: 4rem; 
+        width: 4rem;
+
+        border-radius: 5rem;
+        overflow: hidden;
+    }
+}
+
+.albumCard {
+    display: flex; 
+    align-items: flex-start; 
+    justify-content: flex-start;
+
+    gap: 0px 1rem;
+
+    .cover {
+        width: 5rem; 
+        height: 5rem; 
+        ;
+    }
+
+    .info {
+        margin: 0.2rem 0px; 
+    }
+}
