@@ -1,0 +1,67 @@
+
+
+@use "./variables" as app; 
+
+
+.searchField {
+    position: relative; 
+
+    background-color: app.$color-background; 
+    border-radius: 2rem;
+    padding: 0.6rem 1rem;
+    box-shadow: 0px 4px 20px 0px hsl(236deg 8% 32% / 8%);
+
+    #searchIcon {
+        position: absolute; 
+        top: 50%; 
+        left: 0.75rem; 
+        bottom: 0px;
+
+        width: 1.6rem; 
+        height: 1.6rem;
+        padding: 0px; 
+        transform: translateY(-50%);
+
+        svg {
+            
+        }
+    }
+
+    #field {
+        width: 100%;
+        padding: 0px 2rem; 
+        height: 100%;
+
+        &::placeholder {
+            color: app.$color-gray; 
+            font-weight: app.$weight-light;
+        }
+    }
+
+
+}
+
+.empty {
+    width: 100%; 
+    margin-top: 12vh;
+
+    .illustration {
+        height: 50vmin;
+        width: 50vmin;
+        min-width: 342px;
+        min-height: 342px;
+        padding: 2rem;
+
+        margin: 0px auto; 
+    }
+
+    p {
+        text-align: center; 
+        width: 100%;
+    }
+
+    a {
+        color: #665df5;
+    } 
+}
+

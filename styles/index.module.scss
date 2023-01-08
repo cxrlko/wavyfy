@@ -4,7 +4,8 @@
 
 
 #main {
-    padding: 0px 8vw; 
+    padding: 10vh 8vw; 
+    min-height: 100vh;
 
     > section {
         margin-bottom: 3rem;
@@ -16,7 +17,7 @@
     }
 
     > section:last-child {
-        margin-bottom: 16vh;
+        margin-bottom: 8vh;
     }
 }
 
